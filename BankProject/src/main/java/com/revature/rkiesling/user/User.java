@@ -1,7 +1,7 @@
 package com.revature.rkiesling.user;
-import com.revature.rkiesling.bankmodel.Auth;
+import com.revature.rkiesling.bankmodel.AuthLevel;
 
-public class User implements Auth {
+public class User implements AuthLevel {
 	private int auth = User.AUTH_NONE;
 	public User () {
 		super ();

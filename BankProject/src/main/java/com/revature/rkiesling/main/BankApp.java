@@ -19,5 +19,6 @@ public class BankApp {
 			System.out.println ("Failed: " + e.getMessage () + ".");
 		}
 		BankDBUtil.makeBankSchema ();
+		BankDBUtil.makeBankTables ();
 	}
 }
