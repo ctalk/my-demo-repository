@@ -13,7 +13,8 @@ public class JDBCConnection {
 		DriverManager.registerDriver(new Driver ());
 		
 		String url = System.getenv ("db_url");
-		System.out.print ("Connecting to " + url + "... ");
+		// For testing if needed.
+		// System.out.print ("Connecting to " + url + "... ");
 		System.out.flush ();
 		String username = System.getenv ("db_user");
 		String password = System.getenv ("db_password");

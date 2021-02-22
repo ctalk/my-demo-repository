@@ -1,6 +1,9 @@
 package com.revature.rkiesling.util;
 
+import com.revature.rkiesling.ui.Login;
+
 import java.sql.Connection;
+
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,10 +16,27 @@ public class BankDBUtil implements AuthLevel {
 	public static final String userTableName = "users";
 	
 	private static void printSQLException (String msg, SQLException e) {
-		// This allows us to avoid printing the "query produced no results
-		// exceptions.
+		// This allows us to avoid printing the "query produced no results,"
+		// messages, and or other exceptions where the error code == 0.
 		if (e.getErrorCode () != 0) {
 			System.out.println (msg + e.getMessage ());
+		}
+	}
+	
+	public static boolean haveBankSchema () {
+		try (Connection conSchema = JDBCConnection.getConnection ()) {
+			String sql = "SELECT schema_name FROM information_schema.schemata WHERE schema_name = ?";
+			PreparedStatement p = conSchema.prepareStatement(sql);
+			p.setString(1, schemaName);
+			ResultSet rs = p.executeQuery ();
+			if (rs.next ()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			System.out.println ("haveBankSchema exception: " + e.getErrorCode ());
+			return false;
 		}
 	}
 	
@@ -39,7 +59,8 @@ public class BankDBUtil implements AuthLevel {
 				}
 			}
 			
-		} catch (SQLException e) {
+		} catch (SQLException e) {// System.out.println ("makeBankTables: " + query.toString () + " : " + e.getMessage ());
+			
 			System.out.println ("makeBankSchema: " + e.getMessage ());
 			e.printStackTrace ();
 		}
@@ -98,18 +119,19 @@ public class BankDBUtil implements AuthLevel {
 			//                             authLevel, 
 			//                             comment) 
 			// values (
-			// 'admin', 
+			// 'admin',          - Determined by Login.getAdminCreds () when we started.
 			// 'adminFirstName', 
 			// 'adminLastName', 
-			// 'admin', 
+			// 'admin',          - Also determined by Login.getAdminCreds ().
 			// AuthLevel.AUTH_ADMIN,
 			// 'Machine-generated user.')
-			query.insert(0,  "insert into " + qUserTableName + " (");
-			query.append("username, firstName, lastName, password, authLevel, comment)");
-			query.append(" values ('admin', 'adminFirstName', 'adminLastName', 'admin', " + AuthLevel.AUTH_ADMIN
-					+ ", ");
-			query.append ("'Machine-generated user.')");
-			p = conTable.prepareStatement(query.toString());
+			
+			String createAdminSQL = "insert into " + qUserTableName + " (" +
+								"username, firstName, lastName, password, authLevel, comment)" +
+								" values ('" + Login.adminName () + "', 'adminFirstName', 'adminLastName', '" +
+								Login.adminPassword () + "', " + AuthLevel.AUTH_ADMIN + ", 'Machine generated user.')";
+									
+			p = conTable.prepareStatement(createAdminSQL);
 			try {
 				rs = p.executeQuery ();
 			} catch (SQLException e) {

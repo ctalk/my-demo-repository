@@ -10,4 +10,9 @@ public interface Postable {
 	public static final int POST_SEND_XFER = 6;
 	public static final int POST_RECEIVE_XFER = 7;
 	public static final int POST_ADMIN_INIT = 8;
+	
+	// some return constants, also declared in AuthLevel interface.
+		public static final int SUCCESS = 0;
+		public static final int FAIL = 1;
+	
 }
