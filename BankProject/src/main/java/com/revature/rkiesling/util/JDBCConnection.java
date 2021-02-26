@@ -8,6 +8,11 @@ import org.postgresql.Driver;
 
 public class JDBCConnection {
 	
+	// Creates a PostgreSQL connection using the following environment variables:
+	//   db_user
+	//   db_password
+	//   db_url
+	
 	public static Connection getConnection () throws SQLException {
 		// use DriverManager
 		DriverManager.registerDriver(new Driver ());

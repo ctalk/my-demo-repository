@@ -1,47 +1,76 @@
 package com.revature.rkiesling.main;
 
 import com.revature.rkiesling.util.BankDBUtil;
-import com.revature.rkiesling.bankmodel.AuthLevel;
-import com.revature.rkiesling.ui.ScreenUtil;
-import com.revature.rkiesling.ui.Login;
+import com.revature.rkiesling.bankmodel.BankTasks;
 
+import com.revature.rkiesling.bankmodel.AuthLevel;
+import com.revature.rkiesling.bankmodel.User;
+import com.revature.rkiesling.bankmodel.dao.UserDAOImpl;
+import com.revature.rkiesling.ui.*;
+// import com.revature.rkiesling.ui.Login;
+import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.util.JDBCConnection;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import org.apache.log4j.Logger;
+
 
 public class BankApp implements AuthLevel {
 	
-	// Start with no one logged in.
-	private int userAuthLevel = AUTH_NONE;
+	private static Logger log = Logger.getLogger(BankApp.class);
 	
 	public static void main (String[] args) {
 		
+		int retries = 0;
+		
 		// Get the admin's credentials from the system
 		// before we check for the DBMS.
-		Login.getAdminCreds ();
-
-		JDBCConnection con = new JDBCConnection ();
+		LoginService.getAdminCreds ();
 
 		try {
-			// getConnection prints the connection message
-			con.getConnection ();
+			// Make sure we have a connection.  getConnection prints the "Connected" message
+			Connection c = JDBCConnection.getConnection ();
 			System.out.println ("Connected.");
+			log.info ("Connected to bank RDBMS");
+			c.close ();
 		} catch (SQLException e) {
-			System.out.println ("Failed: " + e.getMessage () + ".");
+			System.out.println ("Bank data connection failed: " + e.getMessage () + ".");
+			log.error ("Bank data connection failed: " + e.getMessage () + ".");
+			System.exit (AuthLevel.FAIL);
 		}
 		if (!BankDBUtil.haveBankSchema ()) {
 			System.out.println ();
 			System.out.println ("Creating new DB.");
 			BankDBUtil.makeBankSchema ();
 			BankDBUtil.makeBankTables ();
-			ScreenUtil.pause ();
+			BankDBUtil.createAdminUser ();
 		}
 		
-		ScreenUtil.pause ();
-		ScreenUtil.clear ();
-		ScreenUtil.pause ();
+		LoginService l = new LoginService ();
+		UserDAOImpl u = new UserDAOImpl ();
 		
+		User user = null;
+			
+		// Give the user AuthLevel.maxRetries attempts to log in.
+		do {
+			try {
+				l.getUserLogin ((retries == 0) ? "Please log in:" : "");
+				user = u.getLoginInfo (l.userName (), l.userPassword ());
+				
+			} catch (UserNotFoundException e) {
+				if (++retries == AuthLevel.maxRetries) {
+					System.out.println ("Login failed - goodbye.");
+					log.info("User login unsuccessful - exiting.");
+					System.exit(AuthLevel.SUCCESS);
+				}
+			}
+		} while (user == null);
 		
+		System.out.println ("\nWelcome, " + user.firstName () + " " + user.lastName () + ".\n");
+		
+		BankTasks.performTasks(user);
+		
+						
 	}
 }

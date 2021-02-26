@@ -10,6 +10,7 @@ public class ScreenUtil {
 		}
 		
 		public static final void pause () {
+			@SuppressWarnings ("resource")
 			Scanner s = new Scanner (System.in);
 			System.out.println ("Press [Enter] to continue.");
 			s.nextLine ();
