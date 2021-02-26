@@ -248,3 +248,21 @@
 02-26-2021 11:19:37 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - User admin: Login successful.
 02-26-2021 11:19:38 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Adding test user marion
 02-26-2021 11:19:38 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Adding test user declan
+02-26-2021 13:12:10 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-26-2021 13:12:16 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - User admin: Login successful.
+02-26-2021 13:12:29 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Creating test user data...
+02-26-2021 13:12:29 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user marion.
+02-26-2021 13:12:29 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user declan.
+02-26-2021 13:12:29 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+02-26-2021 13:34:10 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - JDBCConnection error: The url cannot be null
+02-26-2021 13:37:50 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - JDBCConnection error: The url cannot be null
+02-26-2021 13:39:08 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - JDBCConnection error: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+02-26-2021 13:39:35 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - User marion: Login successful.
+02-26-2021 13:49:02 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - Login for, "marion," failed.
+02-26-2021 13:49:02 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - Login for, "marion," failed.
+02-26-2021 13:49:02 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - Login for, "marion," failed.
+02-26-2021 13:49:02 {INFO} [com.revature.rkiesling.util.BankDBUtil] - User login unsuccessful - exiting.
+02-26-2021 13:51:54 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - Login for, "marion," failed.
+02-26-2021 13:51:54 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - Login for, "marion," failed.
+02-26-2021 13:51:54 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - Login for, "marion," failed.
+02-26-2021 13:51:54 {INFO} [com.revature.rkiesling.util.BankDBUtil] - User login unsuccessful - exiting.

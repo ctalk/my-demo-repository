@@ -1,14 +1,27 @@
 package com.revature.rkiesling.ui;
 
 import com.revature.rkiesling.bankmodel.AuthLevel;
+import com.revature.rkiesling.bankmodel.User;
+import com.revature.rkiesling.bankmodel.dao.UserDAOImpl;
+import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
+import com.revature.rkiesling.util.BankDBUtil;
 
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import org.apache.log4j.Logger;
+
 
 public class LoginService implements AuthLevel {
+	
+	// These are typically run with the DBMS login (in environment variables) as:
+	//  - db_user=postgres
+	//  - db_password=postgres
+	//  - db_url=jdbc:postgresql://localhost:5433/postgres
+	
+	private static Logger log = Logger.getLogger(BankDBUtil.class);
 	
 	private static String adminName = adminDefaultUsername;
 	private static String adminPassword = adminDefaultPassword;
@@ -68,7 +81,7 @@ public class LoginService implements AuthLevel {
 		
 	@SuppressWarnings("resource")
 	// We can't close System.in.
-	public void getUserLogin (String title) {
+	public void getLoginInfoFromForm (String title) {
 		Scanner s = new Scanner (System.in);
 		System.out.println (title);
 		System.out.print("User name: ");
@@ -77,10 +90,41 @@ public class LoginService implements AuthLevel {
 		this.userPassword = s.nextLine ();		
 	}
 	
+	public void userName (String name) {
+		this.userName = name;
+	}
+	
 	public String userName () {
 		return this.userName;
 	}
+	
+	public void userPassword (String password) {
+		this.userPassword = password;
+	}
+	
 	public String userPassword () {
 		return this.userPassword;
 	}
+	
+	public User getUserLogin () {
+		
+		int retries = 0;
+		User user = null;
+		UserDAOImpl u = new UserDAOImpl ();
+		
+		do {
+			try {
+				user = u.getLoginInfo (this.userName (), this.userPassword ());
+				
+			} catch (UserNotFoundException e) {
+				if (++retries == AuthLevel.maxRetries) {
+					System.out.println ("Login failed - goodbye.");
+					log.info("User login unsuccessful - exiting.");
+					System.exit(AuthLevel.SUCCESS);
+				}
+			}
+		} while (user == null);
+		return user;
+	}
 }
+

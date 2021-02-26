@@ -2,6 +2,7 @@ package com.revature.rkiesling.ui;
 
 import com.revature.rkiesling.bankmodel.AuthLevel;
 
+import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,16 +13,17 @@ public class Login implements AuthLevel {
 	private static String adminName = adminDefaultUsername;
 	private static String adminPassword = adminDefaultPassword;
 	
+	private String userName;
+	private String userPassword;
+	
 	public static int getAdminCreds () {
 	
 		// Returns SUCCESS if the method retrieves the admin name and 
 		// password from the system's properties, or FAIL if it uses
 		// the default name and password (defined in AuthLevel).
 		
-		String propPath = "";
-	
 		String homeDir = System.getenv("HOME");
-		propPath = homeDir + "/" + propFilename;
+		String propPath = homeDir + "/" + propFilename;
 		try {
 			FileInputStream in = new FileInputStream(propPath);
 			Properties adminProps = new Properties ();
@@ -35,9 +37,9 @@ public class Login implements AuthLevel {
 				in.close ();
 			}
 			if (adminName == adminDefaultUsername || adminPassword == adminDefaultPassword) {
-				return FAIL;
+				return AuthLevel.FAIL;
 			} else {
-				return SUCCESS;
+				return AuthLevel.SUCCESS;
 			}
 				
 		} catch (FileNotFoundException e) {
@@ -49,7 +51,7 @@ public class Login implements AuthLevel {
 		String adminEnvName = "";
 		String adminEnvPasswd = "";
 		if (((adminEnvName = System.getenv (adminUsernameProp)) != null)
-			&& ((adminEnvPasswd = System.getenv (adminPasswordProp)) != null)) {
+				&& ((adminEnvPasswd = System.getenv (adminPasswordProp)) != null)) {
 			adminName = adminEnvName;
 			adminPassword = adminEnvPasswd;
 			return SUCCESS;
@@ -64,5 +66,21 @@ public class Login implements AuthLevel {
 		return adminPassword;
 	}
 		
-
+	@SuppressWarnings("resource")
+	// We can't close System.in.
+	public void getUserLogin (String title) {
+		Scanner s = new Scanner (System.in);
+		System.out.println (title);
+		System.out.print("User name: ");
+		this.userName = s.nextLine ();
+		System.out.print("Password: ");
+		this.userPassword = s.nextLine ();		
+	}
+	
+	public String userName () {
+		return this.userName;
+	}
+	public String userPassword () {
+		return this.userPassword;
+	}
 }
