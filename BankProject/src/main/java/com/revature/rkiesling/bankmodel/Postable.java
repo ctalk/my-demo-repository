@@ -12,7 +12,11 @@ public interface Postable {
 	public static final int POST_ADMIN_INIT = 8;
 	
 	// some return constants, also declared in AuthLevel interface.
-		public static final int SUCCESS = 0;
-		public static final int FAIL = 1;
+	public static final int SUCCESS = 0;
+	public static final int FAIL = 1;
+		
+	// If we have a transaction that requires someone else to complete it
+	public static final int INCOMPLETE = 0;
+	public static final int COMPLETE = 1;
 	
 }

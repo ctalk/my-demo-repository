@@ -11,6 +11,12 @@ public interface TransactionTable {
 	public static final ArrayList<String> colDefs = 
 			new ArrayList<>(Arrays.asList
 					("id serial primary key not null,",
-					 "username varchar(64) not null)"));
+					 "datetime timestamp default current_timestamp,",
+					 "username varchar(64) not null,",
+					 "ttype int not null,",
+					 "amount numeric not null,",
+					 "rcvr varchar(64) not null,",
+					 "completed int not null,",
+					 "comment text)"));
 
 }

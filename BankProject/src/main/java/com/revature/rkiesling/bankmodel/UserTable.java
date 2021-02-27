@@ -6,7 +6,6 @@ import java.util.Arrays;
 public interface UserTable {
 	
 	public static final String schemaName = "bank_app";
-	
 	public static final String userTableName = "bank_app.users";
 	
 	// The bank_app.users column names - including punctuations
