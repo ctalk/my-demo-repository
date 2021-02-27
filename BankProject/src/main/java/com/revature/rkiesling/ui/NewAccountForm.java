@@ -8,9 +8,9 @@ public class NewAccountForm {
 
 	private static Scanner sc = new Scanner (System.in);
 
-	public static User getUserInfoByForm (Integer authlvl) {
+	public static User getUserInfoByForm (String title, Integer authlvl) {
 		User user = new User ();
-		System.out.println ("\nPlease enter the new employee information.");
+		System.out.println (title);
 		user.auth(authlvl);
 		System.out.print("First name: ");
 		user.firstName (sc.nextLine ());
@@ -20,9 +20,10 @@ public class NewAccountForm {
 		user.address(sc.nextLine ());
 		System.out.print("Zip code: ");
 		user.zipCode(sc.nextLine ());
-		System.out.print("Comment (optional):");
+		System.out.print("Comment (optional): ");
 		user.comment(sc.nextLine ());
-		System.out.print("\nLogin name: ");
+		System.out.println ("\nPlease enter the new account user name and password.");
+		System.out.print("Login name: ");
 		user.userName(sc.nextLine ());
 		System.out.print("Password: ");
 		user.passWord(sc.nextLine ());

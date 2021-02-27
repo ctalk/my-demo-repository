@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.*;
+// import static org.mockito.Mockito.*;
 
 
 public class TestLoginService {
@@ -25,10 +25,15 @@ public class TestLoginService {
 	
 	@Test
 	public void testValidLogin () {
+		User user = null;
 		login.userName("marion");
 		login.userPassword("musicman");
 		
-		User user = login.getUserLogin ();
+		try {
+			user = login.getUserLogin ();
+		} catch (UserNotFoundException e) {
+			//
+		}
 		
 		assertEquals (user.userName(), login.userName ());
 	}
@@ -38,21 +43,28 @@ public class TestLoginService {
 		login.userName("mario");
 		login.userPassword("musicman");
 		
-		@SuppressWarnings("unused")
-		User user = login.getUserLogin ();
+		try {
+			@SuppressWarnings("unused")
+			User user = login.getUserLogin ();
+		} catch (UserNotFoundException e) {
+		//
+		}	
 		
-		// assertEquals (user.userName(), login.userName ());
 	}
+	
 	@Test(expected=UserNotFoundException.class)
 	public void testBadPassword () {
 		login.userName("marion");
 		login.userPassword("musicmana");
 		
-		@SuppressWarnings("unused")
-		User user = login.getUserLogin ();
+		try {
+			@SuppressWarnings("unused")
+			User user = login.getUserLogin ();
+		} catch (UserNotFoundException e) {
+			
+		}
 		
-		// assertEquals (user.userName(), login.userName ());
+		
 	}
-
 
 }

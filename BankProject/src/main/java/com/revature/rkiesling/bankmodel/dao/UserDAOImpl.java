@@ -1,10 +1,12 @@
 package com.revature.rkiesling.bankmodel.dao;
 
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
+
 import com.revature.rkiesling.bankmodel.User;
 
 import com.revature.rkiesling.util.JDBCConnection;
 import com.revature.rkiesling.bankmodel.AuthLevel;
+import com.revature.rkiesling.bankmodel.UserTable;
 
 import org.apache.log4j.Logger;
 import java.sql.Connection;
@@ -14,7 +16,7 @@ import java.sql.Statement;
 import java.lang.StringBuffer;
 
 
-public class UserDAOImpl implements AuthLevel {
+public class UserDAOImpl implements AuthLevel, UserTable {
 
 	private static Logger log = Logger.getLogger(UserDAOImpl.class);
 	
@@ -37,7 +39,8 @@ public class UserDAOImpl implements AuthLevel {
 				dbpass = rs.getString("password");
 				if (dbpass.equals(password)) {
 					user = new User (rs.getString("username"), rs.getString("firstName"),
-							rs.getString("lastName"), rs.getInt ("authlevel"));
+							rs.getString("lastName"), rs.getInt ("authlevel"), 
+							rs.getString("zipcode"), rs.getString("address"), rs.getString("comment"));
 					c.close ();
 					log.info ("User " + userName + ": Login successful.");
 					return user;
@@ -70,8 +73,12 @@ public class UserDAOImpl implements AuthLevel {
 			log.error ("JDBCConnection error: " + e.getMessage ());
 			System.exit(AuthLevel.FAIL);
 		}
-		StringBuffer sql = 
-				new StringBuffer ("insert into bank_app.users (username, firstname, lastname, password, authlevel, address, zipcode, comment) values (");
+		StringBuffer sql = new StringBuffer ("insert into " + UserTable.userTableName + "(");
+		// sql.append(UserTable.userTableName + "(");
+		for (String col: UserTable.colNames) {
+			sql.append (col);
+		}
+		sql.append("values (");
 		sql.append("'" + user.userName () + "', ");
 		sql.append("'" + user.firstName () + "', ");
 		sql.append("'" + user.lastName () + "', ");
@@ -81,10 +88,13 @@ public class UserDAOImpl implements AuthLevel {
 		sql.append(user.zipCode() + ", ");
 		sql.append("'" + user.comment() + "')");
 		
+		System.out.println (sql);
+		
 		// System.out.println (sql);
 		try {
 			Statement stmt = c.createStatement ();
 			Integer nUpdates = stmt.executeUpdate(sql.toString ());
+			System.out.println ("nUpdates = " + nUpdates);
 		} catch (SQLException e) {
 			log.error("Bad SQL query: " + sql);
 		} 

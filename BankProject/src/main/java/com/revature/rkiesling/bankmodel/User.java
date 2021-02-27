@@ -14,12 +14,16 @@ public class User {
 	public User () {
 		super ();
 	}
-	public User (String username, String firstname, String lastname, Integer authlvl) {
+	public User (String username, String firstname, String lastname, Integer authlvl, 
+			String zipcode, String address, String comment) {
 		super ();
 		userName = username;
 		firstName = firstname;
 		lastName = lastname;
 		auth = authlvl;
+		this.zipCode = Integer.parseInt (zipcode);
+		this.address = address;
+		this.comment = comment;
 	}
 	
 	public String userName () {

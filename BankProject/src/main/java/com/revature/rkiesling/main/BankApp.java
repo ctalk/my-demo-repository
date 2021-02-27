@@ -1,11 +1,11 @@
 package com.revature.rkiesling.main;
 
 import com.revature.rkiesling.util.BankDBUtil;
+
 import com.revature.rkiesling.bankmodel.BankTasks;
 
 import com.revature.rkiesling.bankmodel.AuthLevel;
 import com.revature.rkiesling.bankmodel.User;
-import com.revature.rkiesling.bankmodel.dao.UserDAOImpl;
 import com.revature.rkiesling.ui.*;
 // import com.revature.rkiesling.ui.Login;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
@@ -22,11 +22,11 @@ public class BankApp implements AuthLevel {
 	
 	public static void main (String[] args) {
 		
-		int retries = 0;
 		
 		// Get the admin's credentials from the system
 		// before we check for the DBMS.
 		LoginService.getAdminCreds ();
+		int retries = 0;
 
 		try {
 			// Make sure we have a connection.  getConnection prints the "Connected" message
@@ -48,12 +48,23 @@ public class BankApp implements AuthLevel {
 		}
 		
 		LoginService l = new LoginService ();
-		l.getLoginInfoFromForm ("Please log in: ");
-		User user = l.getUserLogin ();
+		User user = null;
+		do {
+			l.getLoginInfoFromForm ((retries == 0) ? "Please log in: " : "");
+			try {
+				user = l.getUserLogin ();
+			} catch (UserNotFoundException e) {
+				if (retries == AuthLevel.maxRetries) {
+					System.out.println ("Login failed - goodbye.");
+					log.info("User login unsuccessful - exiting.");
+					System.exit(AuthLevel.SUCCESS);					
+				}
+			}
+		} while ((user == null) && (++retries <= AuthLevel.maxRetries));
 
-		System.out.println ("\nWelcome, " + user.firstName () + " " + user.lastName () + ".\n");
-		
-		BankTasks.performTasks(user);
-								
+		if (user != null) {
+			System.out.println ("\nWelcome, " + user.firstName () + " " + user.lastName () + ".\n");
+			BankTasks.performTasks(user); 
+		}	
 	}
 }

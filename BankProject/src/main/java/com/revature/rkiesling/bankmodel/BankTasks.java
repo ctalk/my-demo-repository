@@ -11,16 +11,18 @@ public class BankTasks implements Postable, AuthLevel {
 
 	public static void performTasks (User user) {
 		
-		UserDAOImpl ui = new UserDAOImpl ();
+		UserDAOImpl dao = new UserDAOImpl ();
 		
-		while (true) {
-			switch (user.auth ())
-			{
-			case AuthLevel.AUTH_ADMIN:
+		
+		switch (user.auth ())
+		{
+		case AuthLevel.AUTH_ADMIN:
+			while (true) {
 				Menu m = new Menu ();
 				m.add("Truncate DBMS (CAUTION: Erases data)");
 				m.add("Create test data");
 				m.add("Create employee account");
+				m.add("Create admin account");
 				m.add("Exit");
 				switch (m.display("Please select an option:"))
 				{
@@ -32,17 +34,25 @@ public class BankTasks implements Postable, AuthLevel {
 					BankDBUtil.makeTestUserData ();
 					break;
 				case 3:
-					User newUser = NewAccountForm.getUserInfoByForm(AuthLevel.AUTH_EMPLOYEE);
-					ui.addUser (newUser);
-					ScreenUtil.pause ();
+					User newUser = NewAccountForm.getUserInfoByForm("\nPlease enter the new employee information.", AuthLevel.AUTH_EMPLOYEE);
+					dao.addUser (newUser);
 					break;
 				case 4:
+					User newAdminUser = NewAccountForm.getUserInfoByForm("\nPlease enter the new admin information.", AuthLevel.AUTH_ADMIN);
+					dao.addUser (newAdminUser);
+					break;
+				case 5:
+					System.out.println ("\nExiting.  For more information about this app, please visit:\nhttps://github.com/ctalk/my-demo-repository/.");
 					System.exit(AuthLevel.SUCCESS);
 					break;
 				}
-				break;
 			}
+			// break;   // notreached
+		case AuthLevel.AUTH_EMPLOYEE:
+			break;
+			
 		}
+		
 
 	}
 }

@@ -1,6 +1,8 @@
 package com.revature.rkiesling.util;
 
 import com.revature.rkiesling.ui.LoginService;
+import com.revature.rkiesling.bankmodel.UserTable;
+import com.revature.rkiesling.bankmodel.TransactionTable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,14 +10,15 @@ import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 
 import com.revature.rkiesling.bankmodel.AuthLevel;
 
-public class BankDBUtil implements AuthLevel {
+public class BankDBUtil implements AuthLevel, UserTable {
 	
-	public static final String schemaName = "bank_app";
-	public static final String userTableName = "users";
+	// public static final String schemaName = "bank_app";
+	// public static final String userTableName = "users";
 	
 	private static Logger log = Logger.getLogger(BankDBUtil.class);
 	
@@ -32,7 +35,7 @@ public class BankDBUtil implements AuthLevel {
 		try (Connection conSchema = JDBCConnection.getConnection ()) {
 			String sql = "SELECT schema_name FROM information_schema.schemata WHERE schema_name = ?";
 			PreparedStatement p = conSchema.prepareStatement(sql);
-			p.setString(1, schemaName);
+			p.setString(1, UserTable.schemaName);
 			ResultSet rs = p.executeQuery ();
 			if (rs.next ()) {
 				return true;
@@ -52,20 +55,21 @@ public class BankDBUtil implements AuthLevel {
 			p.setString(1, schemaName);
 			ResultSet rs = p.executeQuery ();
 			if (rs.next ()) {
-				log.info("Found, \"" + schemaName + ",\"schema.");
+				log.info("Found, \"" + UserTable.schemaName + ",\"schema.");
 			} else {
-				log.info("Schema, \"" + schemaName + ",\" not found - creating...");
+				log.info("Schema, \"" + UserTable.schemaName + ",\" not found - creating...");
 				try {
-					sql = "create schema " + schemaName;
+					sql = "create schema " + UserTable.schemaName;
 					p = conSchema.prepareStatement (sql);
 					p.executeUpdate ();
 					conSchema.close ();
+
 					log.info("Success.");
 				} catch (SQLException e) {
 					reportSQLException ("makeBankSchema: ", e);
 				}
 			}
-			
+
 		} catch (SQLException e) {
 			reportSQLException ("makeBankSchema: ", e);
 		}
@@ -78,8 +82,6 @@ public class BankDBUtil implements AuthLevel {
 			
 			ArrayList<String> testUserNames = new ArrayList <String>(Arrays.asList("marion", "declan"));
 			ArrayList<String> testPasswords = new ArrayList<String>(Arrays.asList("musicman", "bigCommittment"));
-			String qUserTableName = schemaName + "." + userTableName;
-
 
 			// Create test user
 			// insert into bank_app.users (username, 
@@ -93,8 +95,8 @@ public class BankDBUtil implements AuthLevel {
 			//	   all of the other fields can be the same, because, at this time,  while we're only testing logins.
 			// )
 			
-			String createTestSQL =  
-					"insert into " + qUserTableName + " (" +
+			String createTestSQL = 
+					"insert into " + UserTable.userTableName + " (" +
 					 		"username, firstName, lastName, password, authLevel, address, zipcode, comment)" +
 							" values (?, 'testFirstName', 'testLastName', ?, " + AuthLevel.AUTH_GUEST + ", 'testAddress', " + 
 					      10000 + ", 'Machine generated test data.')";
@@ -116,6 +118,7 @@ public class BankDBUtil implements AuthLevel {
 				conTestUser.close ();
 				log.info("Success.");
 			} catch (SQLException e) {
+
 				reportSQLException ("makeTestUserData: ", e);
 			}
 				
@@ -127,7 +130,6 @@ public class BankDBUtil implements AuthLevel {
 
 	public static void createAdminUser () {
 		try (Connection conAdminUser = JDBCConnection.getConnection ()) {
-			String qUserTableName = schemaName + "." + userTableName;
 
 			// Create admin user
 			// insert into bank_app.users (username, 
@@ -142,9 +144,10 @@ public class BankDBUtil implements AuthLevel {
 			// 'adminLastName', 
 			// 'admin',          - Also determined by Login.getAdminCreds ().
 			// AuthLevel.AUTH_ADMIN,
-			// 'Machine-generated user.')
+			// 'Machine-generated user.')		String userQueryActual = "";
+
 			
-			String createAdminSQL = "insert into " + qUserTableName + " (" +
+			String createAdminSQL = "insert into " + UserTable.userTableName + " (" +
 								"username, firstName, lastName, password, authLevel, address, zipcode, comment)" +
 								" values ('" + LoginService.adminName () + "', 'adminFirstName', 'adminLastName', '" +
 								LoginService.adminPassword () + "', " + AuthLevel.AUTH_ADMIN + ", 'adminAddress', " + 10000 + ", 'Machine generated user.')";
@@ -170,36 +173,34 @@ public class BankDBUtil implements AuthLevel {
 	}
 	
 	public static void clearTables () {
-		String qUserTableName = schemaName + "." + userTableName;
-		String sql = "truncate table " + qUserTableName;
+		String sqlUser = "truncate table " + UserTable.userTableName;
+		String sqlTrans = "truncate table " + TransactionTable.transactionTableName;
 		try (Connection clrTable = JDBCConnection.getConnection ()) {
-			PreparedStatement p = clrTable.prepareStatement(sql);
-			p.executeUpdate ();
+			PreparedStatement p = clrTable.prepareStatement(sqlUser);
+			p.addBatch (sqlTrans);
+			p.executeBatch ();
 			log.info("Tables truncated.");
+			clrTable.close();
 		} catch (SQLException e) {
-			reportSQLException ("clearTables: " + sql + " : ", e);
+			reportSQLException ("clearTables: ", e);
 		}
 	}
 	
 	public static void makeBankTables () {
-		String queryActual = "";
 		try (Connection conTable = JDBCConnection.getConnection ()) {
 			
-			// Default is: bankapp.users
-			String qUserTableName = schemaName + "." + userTableName;
-			
 			// Default is: "drop table if exists bank_app.users"
-			String sql = "drop table if exists " + qUserTableName;
-			PreparedStatement p = conTable.prepareStatement(sql);
+			String sqlUser = "drop table if exists " + UserTable.userTableName;
+			PreparedStatement pUser = conTable.prepareStatement(sqlUser);
 			try {
-				p.executeUpdate ();
-				log.info("makeBankTales: removed old bank_app.user table");
+				pUser.executeUpdate ();
+				log.info("makeBankTables: removed old " + UserTable.userTableName + ".");
 			} catch (SQLException e) {
-				reportSQLException ("makeBankTables: " + sql + " : ", e);
-				log.error ("makeBankTables: " + sql + " : " + e.getMessage ());
+				reportSQLException ("makeBankTables: " + sqlUser + " : ", e);
 			}
 			
-			// build query: 
+			// build query: See UserTable.java:
+			//
 			// create table bank_app.users (
 			//		id serial primary key not null,
 			//		username varchar(64) not null,
@@ -212,29 +213,48 @@ public class BankDBUtil implements AuthLevel {
 			//		comment text
 			//		) 
 		
-			StringBuffer query = new StringBuffer (1024);
-			query.insert(0, "create table " + qUserTableName + " (");
-			query.append("id serial primary key not null,");
-			query.append("username varchar(64) not null,");
-			query.append("firstName varchar(64) not null,");
-			query.append("lastName varchar(64) not null,");
-			query.append("password varchar(64) not null,");
-			query.append("authLevel int not null,");
-			query.append("address varchar(255),");
-			query.append("zipCode int,");
-			query.append("comment text)");
-			queryActual = query.toString ();
-			p = conTable.prepareStatement(query.toString());
-			try {
-				p.executeUpdate ();
-				conTable.close ();
-				log.info("makeBankTables: created bank_app.user table");
-			} catch (SQLException e) {
-				reportSQLException ("makeBankTables: " + queryActual + " : ", e);
+			StringBuffer queryUser = new StringBuffer (1024);
+			queryUser.insert(0, "create table " + UserTable.userTableName + " (");
+			for (String spec: UserTable.colDefs) {
+				queryUser.append(spec);
 			}
+			pUser = conTable.prepareStatement(queryUser.toString());
+			try {
+				pUser.executeUpdate ();
+				// conTable.close ();
+				log.info("makeBankTables: created bank_app.user table.");
+			} catch (SQLException e) {
+				reportSQLException ("makeBankTables: " + queryUser.toString () + " : ", e);
+			}
+			
+			// Now create bank_app.transactions
+			String sqlTrans = "drop table if exists " + TransactionTable.transactionTableName;
+			PreparedStatement pTrans = conTable.prepareStatement(sqlTrans);
+			try {
+				pTrans.executeUpdate ();
+				log.info("makeBankTables: removed old " + TransactionTable.transactionTableName + ".");
+			} catch (SQLException e) {
+				reportSQLException ("makeBankTables: " + sqlTrans + " : ", e);
+			}
+			StringBuffer queryTrans = new StringBuffer (1024);
+			queryTrans.insert(0, "create table " + TransactionTable.transactionTableName + " (");
+			for (String spec: TransactionTable.colDefs) {
+				queryTrans.append(spec);
+			}
+			
+			pTrans = conTable.prepareStatement(queryTrans.toString());
+			try {
+				pTrans.executeUpdate ();
+				// conTable.close ();
+				log.info("makeBankTables: created " + TransactionTable.transactionTableName + " table.");
+			} catch (SQLException e) {
+				reportSQLException ("makeBankTables: " + queryTrans.toString () + " : ", e);
+			}
+
+			conTable.close ();
 						
 		} catch (SQLException e) {
-			reportSQLException ("makeBankTables: " + queryActual + " : ", e);
+			reportSQLException ("makeBankTables: ", e);
 		}
 	
 	}
