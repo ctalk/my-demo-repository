@@ -49,7 +49,9 @@ public class BankTasks implements Postable, AuthLevel {
 			}
 			// break;   // notreached
 		case AuthLevel.AUTH_EMPLOYEE:
-			break;
+		break;
+		case AuthLevel.AUTH_GUEST:
+		break;
 			
 		}
 		

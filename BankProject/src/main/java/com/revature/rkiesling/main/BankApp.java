@@ -49,22 +49,24 @@ public class BankApp implements AuthLevel {
 		
 		LoginService l = new LoginService ();
 		User user = null;
-		System.out.println ("\nPlease log in: ");
+		System.out.println ("\nPlease log in, or enter \"new\" to create an account:");
 		do {
-			try {
-				user = l.getUserLogin ();
-			} catch (UserNotFoundException e) {
-				if (retries == AuthLevel.maxRetries) {
-					System.out.println ("Login failed - goodbye.");
-					log.info("User login unsuccessful - exiting.");
-					System.exit(AuthLevel.SUCCESS);					
-				}
+		    try {
+			user = l.getUserLogin ();
+		    } catch (UserNotFoundException e) {
+			if (retries == AuthLevel.maxRetries) {
+			    System.out.println ("Login failed - too many retries.  Goodbye.");
+			    log.info("User login unsuccessful - exiting.");
+			    System.exit(AuthLevel.SUCCESS);					
+			} else {
+			    System.out.println ("User not found. Please re-enter.");
 			}
+		    }
 		} while ((user == null) && (++retries <= AuthLevel.maxRetries));
 
 		if (user != null) {
-			System.out.println ("\nWelcome, " + user.firstName () + " " + user.lastName () + ".\n");
-			BankTasks.performTasks(user); 
+		    System.out.println ("\nWelcome, " + user.firstName () + " " + user.lastName () + ".\n");
+		    BankTasks.performTasks(user); 
 		}	
 	}
 }

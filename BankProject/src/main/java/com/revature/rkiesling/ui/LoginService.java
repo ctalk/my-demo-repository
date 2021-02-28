@@ -5,6 +5,7 @@ import com.revature.rkiesling.bankmodel.User;
 import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.bankmodel.exception.UserAlreadyExistsException;
+import com.revature.rkiesling.bankmodel.exception.NewUserException;
 
 import java.util.Scanner;
 import java.io.FileInputStream;
@@ -78,11 +79,15 @@ public class LoginService implements AuthLevel {
 		
 	@SuppressWarnings("resource")
 	// We can't close System.in.
-	public void getLoginInfoFromForm (String title) {
+	public void getLoginInfoFromForm (String title)
+	    throws NewUserException {
 		Scanner s = new Scanner (System.in);
 		System.out.println (title);
 		System.out.print("User name: ");
 		this.userName = s.nextLine ();
+		if (this.userName().equals("new")) {
+		    throw new NewUserException ("new user login");
+		}
 		System.out.print("Password: ");
 		this.userPassword = s.nextLine ();		
 	}
@@ -113,6 +118,8 @@ public class LoginService implements AuthLevel {
 			user = u.getLoginInfo (this.userName (), this.userPassword ());
 		} catch (UserNotFoundException e) {
 			throw e;
+		} catch (NewUserException e) {
+		    user = NewAccountService.createUser ("Please enter the following information:", AuthLevel.AUTH_GUEST);
 		}
 		return user;
 	}

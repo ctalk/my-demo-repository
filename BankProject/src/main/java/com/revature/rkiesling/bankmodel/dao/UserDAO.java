@@ -44,20 +44,7 @@ public class UserDAO implements AuthLevel, UserTable {
 				if (dbpass.equals(password)) {
 					user = new User (rs.getString("username"), rs.getString("firstName"),
 							rs.getString("lastName"), rs.getInt ("authlevel"), 
-							@Test(expected=UserNotFoundException.class)
-							public void testBadUserName () {
-								login.userName("mario");
-								login.userPassword("musicman");
-								
-								try {
-									@SuppressWarnings("unused")
-									User user = login.getUserLogin ();
-								} catch (UserNotFoundException e) {
-								//
-								}	
-								
-							}
-			rs.getString("zipcode"), rs.getString("address"), rs.getString("comment"));
+							rs.getString("zipcode"), rs.getString("address"), rs.getString("comment"));
 					c.close ();
 					log.info ("User " + userName + ": Login successful.");
 					return user;
@@ -84,20 +71,7 @@ public class UserDAO implements AuthLevel, UserTable {
 	public User getLoginInfo (String userName) throws UserNotFoundException {
 		Connection c = null;
 		try {
-			c = J	@Test(expected=UserNotFoundException.class)
-			public void testBadUserName () {
-				login.userName("mario");
-				login.userPassword("musicman");
-				
-				try {
-					@SuppressWarnings("unused")
-					User user = login.getUserLogin ();
-				} catch (UserNotFoundException e) {
-				//
-				}	
-				
-			}
-DBCConnection.getConnection ();
+			c = JDBCConnection.getConnection ();
 		} catch (SQLException e) {
 			System.out.println ("Connection error: " + e.getMessage ());
 			log.error ("JDBCConnection error: " + e.getMessage ());
@@ -123,20 +97,7 @@ DBCConnection.getConnection ();
 	
 		try { 
 			c.close ();
-		} catch (	@Test(expected=UserNotFoundException.class)
-		public void testBadUserName () {
-			login.userName("mario");
-			login.userPassword("musicman");
-			
-			try {
-				@SuppressWarnings("unused")
-				User user = login.getUserLogin ();
-			} catch (UserNotFoundException e) {
-			//
-			}	
-			
-		}
-SQLException e) {
+		} catch (SQLException e) {
 			log.error("JDBCConnection.close(): " + e.getMessage()); 
 		}
 		
@@ -168,13 +129,10 @@ SQLException e) {
 		sql.append(user.zipCode() + ", ");
 		sql.append("'" + user.comment() + "')");
 		
-		System.out.println (sql);
-		
-		// System.out.println (sql);
 		try {
 			Statement stmt = c.createStatement ();
+			@SuppressWarnings("unused")
 			Integer nUpdates = stmt.executeUpdate(sql.toString ());
-			System.out.println ("nUpdates = " + nUpdates);
 		} catch (SQLException e) {
 			log.error("Bad SQL query: " + sql);
 			throw e;

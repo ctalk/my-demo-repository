@@ -591,3 +591,94 @@
 02-28-2021 05:11:23 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user declan.
 02-28-2021 05:11:23 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
 02-28-2021 05:22:43 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAO] - JDBCConnection error: The url cannot be null
+02-28-2021 06:05:50 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAO] - JDBCConnection error: The url cannot be null
+02-28-2021 06:06:01 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAO] - JDBCConnection error: The url cannot be null
+02-28-2021 06:06:23 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 06:08:12 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 06:08:17 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User admin: Login successful.
+02-28-2021 06:08:23 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 06:08:27 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "new," not found.
+02-28-2021 06:08:30 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "new," not found.
+02-28-2021 06:08:32 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "new," not found.
+02-28-2021 06:08:32 {INFO} [com.revature.rkiesling.main.BankApp] - User login unsuccessful - exiting.
+02-28-2021 06:10:42 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 06:10:45 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "dd," not found.
+02-28-2021 06:10:49 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "dd," not found.
+02-28-2021 06:10:52 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "dd," not found.
+02-28-2021 06:10:52 {INFO} [com.revature.rkiesling.main.BankApp] - User login unsuccessful - exiting.
+02-28-2021 06:17:12 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 06:17:22 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 06:17:28 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "new," not found.
+02-28-2021 06:17:30 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "new," not found.
+02-28-2021 06:17:32 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "new," not found.
+02-28-2021 06:17:32 {INFO} [com.revature.rkiesling.main.BankApp] - User login unsuccessful - exiting.
+02-28-2021 06:27:12 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 06:27:24 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "newaccount," not found.
+02-28-2021 07:54:14 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 07:54:21 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User admin: Login successful.
+02-28-2021 07:54:29 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 07:54:37 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "rrr," not found.
+02-28-2021 07:56:14 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 07:56:18 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "rrrr," not found.
+02-28-2021 07:59:06 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 07:59:12 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "aaaaa," not found.
+02-28-2021 08:02:59 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:03:04 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "bbb," not found.
+02-28-2021 08:03:14 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:03:18 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "bbbb," not found.
+02-28-2021 08:08:23 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:08:28 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "dddd," not found.
+02-28-2021 08:09:40 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:09:45 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "eeeee," not found.
+02-28-2021 08:10:54 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:10:58 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "fffff," not found.
+02-28-2021 08:11:50 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:11:54 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "ggggg," not found.
+02-28-2021 08:21:27 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:21:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Schema, "bank_app," not found - creating...
+02-28-2021 08:21:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+02-28-2021 08:21:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.users.
+02-28-2021 08:21:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.user table.
+02-28-2021 08:21:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.transactions.
+02-28-2021 08:21:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.transactions table.
+02-28-2021 08:21:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.balances.
+02-28-2021 08:21:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.balances table.
+02-28-2021 08:21:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Admin user created.
+02-28-2021 08:21:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Create admin user.
+02-28-2021 08:21:34 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "mew," not found.
+02-28-2021 08:21:42 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "mew," not found.
+02-28-2021 08:21:47 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "aaaaa," not found.
+02-28-2021 08:24:01 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:24:19 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "bbbb," not found.
+02-28-2021 08:24:27 {INFO} [com.revature.rkiesling.ui.NewAccountService] - Calling adduser
+02-28-2021 08:24:27 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - addBalance
+02-28-2021 08:24:27 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - insert into bank_app.balances(username, balance,auth) values ('bbbb', 200.0, 'N')
+02-28-2021 08:24:27 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAO] - Bad SQL query: insert into bank_app.balances(username, balance,auth) values ('bbbb', 200.0, 'N')
+02-28-2021 08:24:27 {INFO} [com.revature.rkiesling.ui.NewAccountService] - ERROR: invalid input syntax for type numeric: "N"
+  Position: 78
+02-28-2021 08:26:37 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:26:45 {INFO} [com.revature.rkiesling.ui.NewAccountService] - createUser: Too many retries - exiting
+02-28-2021 08:26:52 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:26:56 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "ccc," not found.
+02-28-2021 08:27:04 {INFO} [com.revature.rkiesling.ui.NewAccountService] - Calling adduser
+02-28-2021 08:27:04 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - addBalance
+02-28-2021 08:27:04 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - insert into bank_app.balances(username, balance,auth) values ('ccc', 200.0, 'N')
+02-28-2021 08:27:04 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAO] - Bad SQL query: insert into bank_app.balances(username, balance,auth) values ('ccc', 200.0, 'N')
+02-28-2021 08:27:04 {INFO} [com.revature.rkiesling.ui.NewAccountService] - ERROR: invalid input syntax for type numeric: "N"
+  Position: 77
+02-28-2021 08:30:28 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:30:32 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "ffff," not found.
+02-28-2021 08:30:42 {INFO} [com.revature.rkiesling.ui.NewAccountService] - Calling adduser
+02-28-2021 08:30:43 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - addBalance
+02-28-2021 08:30:43 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - insert into bank_app.balances(username, balance,auth) values ('ffff', 200.0, 0)
+02-28-2021 08:31:27 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 08:31:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Schema, "bank_app," not found - creating...
+02-28-2021 08:31:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+02-28-2021 08:31:27 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.users.
+02-28-2021 08:31:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.user table.
+02-28-2021 08:31:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.transactions.
+02-28-2021 08:31:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.transactions table.
+02-28-2021 08:31:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.balances.
+02-28-2021 08:31:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.balances table.
+02-28-2021 08:31:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Admin user created.
+02-28-2021 08:31:28 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Create admin user.
