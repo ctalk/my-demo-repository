@@ -137,7 +137,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
 			// Create admin user
 			// insert into bank_app.users (username, 
 			//							   firstName, 
-			//                             la			System.out.println ("clearTables 3c");
+			//                             lastName,
 			//                             password, 
 			//                             authLevel, 
 			//                             comment) 
@@ -163,7 +163,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
 					log.info("Admin user created.");
 				} else {
 					log.error("Failed to create admin user.");
-				}			System.out.println ("clearTables 3c");
+				}
 
 				conAdminUser.close ();
 				log.info ("Create admin user.");

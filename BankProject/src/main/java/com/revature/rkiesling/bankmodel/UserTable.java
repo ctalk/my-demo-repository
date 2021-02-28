@@ -25,7 +25,7 @@ public interface UserTable {
 	public static final ArrayList<String> colDefs = 
 			new ArrayList<>(Arrays.asList
 					("id serial primary key not null,",
-					  "username varchar(64) not null,",
+					  "username varchar(64) not null unique,",
 					  "firstName varchar(64) not null,",
 					  "lastName varchar(64) not null,",
 					  "password varchar(64) not null,",

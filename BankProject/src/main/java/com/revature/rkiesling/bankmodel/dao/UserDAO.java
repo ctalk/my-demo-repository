@@ -44,7 +44,20 @@ public class UserDAO implements AuthLevel, UserTable {
 				if (dbpass.equals(password)) {
 					user = new User (rs.getString("username"), rs.getString("firstName"),
 							rs.getString("lastName"), rs.getInt ("authlevel"), 
-							rs.getString("zipcode"), rs.getString("address"), rs.getString("comment"));
+							@Test(expected=UserNotFoundException.class)
+							public void testBadUserName () {
+								login.userName("mario");
+								login.userPassword("musicman");
+								
+								try {
+									@SuppressWarnings("unused")
+									User user = login.getUserLogin ();
+								} catch (UserNotFoundException e) {
+								//
+								}	
+								
+							}
+			rs.getString("zipcode"), rs.getString("address"), rs.getString("comment"));
 					c.close ();
 					log.info ("User " + userName + ": Login successful.");
 					return user;
@@ -71,7 +84,20 @@ public class UserDAO implements AuthLevel, UserTable {
 	public User getLoginInfo (String userName) throws UserNotFoundException {
 		Connection c = null;
 		try {
-			c = JDBCConnection.getConnection ();
+			c = J	@Test(expected=UserNotFoundException.class)
+			public void testBadUserName () {
+				login.userName("mario");
+				login.userPassword("musicman");
+				
+				try {
+					@SuppressWarnings("unused")
+					User user = login.getUserLogin ();
+				} catch (UserNotFoundException e) {
+				//
+				}	
+				
+			}
+DBCConnection.getConnection ();
 		} catch (SQLException e) {
 			System.out.println ("Connection error: " + e.getMessage ());
 			log.error ("JDBCConnection error: " + e.getMessage ());
@@ -97,7 +123,20 @@ public class UserDAO implements AuthLevel, UserTable {
 	
 		try { 
 			c.close ();
-		} catch (SQLException e) {
+		} catch (	@Test(expected=UserNotFoundException.class)
+		public void testBadUserName () {
+			login.userName("mario");
+			login.userPassword("musicman");
+			
+			try {
+				@SuppressWarnings("unused")
+				User user = login.getUserLogin ();
+			} catch (UserNotFoundException e) {
+			//
+			}	
+			
+		}
+SQLException e) {
 			log.error("JDBCConnection.close(): " + e.getMessage()); 
 		}
 		
@@ -105,7 +144,7 @@ public class UserDAO implements AuthLevel, UserTable {
 
 	}
 	
-	public void addUser (User user) {
+	public void addUser (User user) throws SQLException {
 		Connection c = null;
 		try {
 			c = JDBCConnection.getConnection ();
@@ -138,6 +177,7 @@ public class UserDAO implements AuthLevel, UserTable {
 			System.out.println ("nUpdates = " + nUpdates);
 		} catch (SQLException e) {
 			log.error("Bad SQL query: " + sql);
+			throw e;
 		} 
 		try { 
 			c.close ();
