@@ -557,3 +557,9 @@
 02-28-2021 03:52:07 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
 02-28-2021 03:52:14 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - User admin: Login successful.
 02-28-2021 03:52:20 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - getLoginInfo: Login info for, "marionc," not found.
+02-28-2021 04:04:25 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - User admin: Login successful.
+02-28-2021 04:04:38 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - getLoginInfo: Login info for, "a," not found.
+02-28-2021 04:04:40 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - getLoginInfo: Login info for, "a," not found.
+02-28-2021 04:34:20 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - User admin: Login successful.
+02-28-2021 04:34:34 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 04:34:38 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - User admin: Login successful.

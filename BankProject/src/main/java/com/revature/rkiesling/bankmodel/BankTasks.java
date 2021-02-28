@@ -2,7 +2,7 @@ package com.revature.rkiesling.bankmodel;
 
 import com.revature.rkiesling.util.BankDBUtil;
 import com.revature.rkiesling.ui.Menu;
-import com.revature.rkiesling.ui.NewAccountForm;
+import com.revature.rkiesling.ui.NewAccountService;
 import com.revature.rkiesling.bankmodel.User;
 import com.revature.rkiesling.bankmodel.dao.UserDAOImpl;
 import com.revature.rkiesling.ui.ScreenUtil;
@@ -35,14 +35,14 @@ public class BankTasks implements Postable, AuthLevel {
 					break;
 				case 3:
 					@SuppressWarnings("unused")
-					User newUser = NewAccountForm.createUser("\nPlease enter the new employee information.", AuthLevel.AUTH_EMPLOYEE);
+					User newUser = NewAccountService.createUser("\nPlease enter the new employee information.", AuthLevel.AUTH_EMPLOYEE);
 					break;
 				case 4:
-					User newAdminUser = NewAccountForm.createUser("\nPlease enter the new admin information.", AuthLevel.AUTH_ADMIN);
-					dao.addUser (newAdminUser);
+					@SuppressWarnings("unused")
+					User newAdminUser = NewAccountService.createUser("\nPlease enter the new admin information.", AuthLevel.AUTH_ADMIN);
 					break;
 				case 5:
-					System.out.println ("\nExiting.  For more information about this app, please visit:\nhttps://github.com/ctalk/my-demo-repository/.");
+					System.out.println ("\nExiting - goodbye.");
 					System.exit(AuthLevel.SUCCESS);
 					break;
 				}
