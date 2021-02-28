@@ -34,11 +34,11 @@ public class BankTasks implements Postable, AuthLevel {
 					BankDBUtil.makeTestUserData ();
 					break;
 				case 3:
-					User newUser = NewAccountForm.getUserInfoByForm("\nPlease enter the new employee information.", AuthLevel.AUTH_EMPLOYEE);
-					dao.addUser (newUser);
+					@SuppressWarnings("unused")
+					User newUser = NewAccountForm.createUser("\nPlease enter the new employee information.", AuthLevel.AUTH_EMPLOYEE);
 					break;
 				case 4:
-					User newAdminUser = NewAccountForm.getUserInfoByForm("\nPlease enter the new admin information.", AuthLevel.AUTH_ADMIN);
+					User newAdminUser = NewAccountForm.createUser("\nPlease enter the new admin information.", AuthLevel.AUTH_ADMIN);
 					dao.addUser (newAdminUser);
 					break;
 				case 5:
