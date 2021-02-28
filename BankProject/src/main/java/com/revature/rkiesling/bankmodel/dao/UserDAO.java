@@ -16,9 +16,9 @@ import java.sql.Statement;
 import java.lang.StringBuffer;
 
 
-public class UserDAOImpl implements AuthLevel, UserTable {
+public class UserDAO implements AuthLevel, UserTable {
 
-	private static Logger log = Logger.getLogger(UserDAOImpl.class);
+	private static Logger log = Logger.getLogger(UserDAO.class);
 	
 
     // When used with two args, matches both the user name and password,

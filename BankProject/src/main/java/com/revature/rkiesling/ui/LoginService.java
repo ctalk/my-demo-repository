@@ -2,7 +2,7 @@ package com.revature.rkiesling.ui;
 
 import com.revature.rkiesling.bankmodel.AuthLevel;
 import com.revature.rkiesling.bankmodel.User;
-import com.revature.rkiesling.bankmodel.dao.UserDAOImpl;
+import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.bankmodel.exception.UserAlreadyExistsException;
 
@@ -106,7 +106,7 @@ public class LoginService implements AuthLevel {
 	public User getUserLogin () throws UserNotFoundException {
 		
 		User user = null;
-		UserDAOImpl u = new UserDAOImpl ();
+		UserDAO u = new UserDAO ();
 		
 		try {
 			this.getLoginInfoFromForm ("");

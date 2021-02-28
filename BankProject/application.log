@@ -563,3 +563,9 @@
 02-28-2021 04:34:20 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - User admin: Login successful.
 02-28-2021 04:34:34 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
 02-28-2021 04:34:38 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAOImpl] - User admin: Login successful.
+02-28-2021 04:55:39 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 04:55:44 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User admin: Login successful.
+02-28-2021 04:55:55 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "marion," not found.
+02-28-2021 04:56:04 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+02-28-2021 04:56:08 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User admin: Login successful.
+02-28-2021 04:56:19 {INFO} [com.revature.rkiesling.ui.NewAccountService] - createUser: Too many retries - exiting

@@ -1,7 +1,7 @@
 package com.revature.rkiesling.ui;
 
 import com.revature.rkiesling.bankmodel.User;
-import com.revature.rkiesling.bankmodel.dao.UserDAOImpl;
+import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.exception.UserAlreadyExistsException;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.bankmodel.AuthLevel;
@@ -17,7 +17,7 @@ public class NewAccountService implements AuthLevel {
 	public static User newUserForm (String title, Integer authlvl) throws UserAlreadyExistsException {
 		User user = new User ();
 		// User oldUser = new User ();
-		UserDAOImpl dao = new UserDAOImpl ();
+		UserDAO dao = new UserDAO ();
 		System.out.println (title);
 		user.auth(authlvl);
 		
@@ -49,7 +49,7 @@ public class NewAccountService implements AuthLevel {
 	
 	public static User createUser (String formTitle, Integer authlvl) {
 		int retries = 0;
-		UserDAOImpl dao = new UserDAOImpl ();
+		UserDAO dao = new UserDAO ();
 		User user = null;
 		do {
 			try {

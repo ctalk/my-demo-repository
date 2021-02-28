@@ -4,14 +4,14 @@ import com.revature.rkiesling.util.BankDBUtil;
 import com.revature.rkiesling.ui.Menu;
 import com.revature.rkiesling.ui.NewAccountService;
 import com.revature.rkiesling.bankmodel.User;
-import com.revature.rkiesling.bankmodel.dao.UserDAOImpl;
+import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.ui.ScreenUtil;
 
 public class BankTasks implements Postable, AuthLevel {
 
 	public static void performTasks (User user) {
 		
-		UserDAOImpl dao = new UserDAOImpl ();
+		UserDAO dao = new UserDAO ();
 		
 		
 		switch (user.auth ())
