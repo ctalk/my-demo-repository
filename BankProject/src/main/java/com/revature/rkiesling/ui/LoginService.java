@@ -4,6 +4,7 @@ import com.revature.rkiesling.bankmodel.AuthLevel;
 import com.revature.rkiesling.bankmodel.User;
 import com.revature.rkiesling.bankmodel.dao.UserDAOImpl;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
+import com.revature.rkiesling.bankmodel.exception.UserAlreadyExistsException;
 
 import java.util.Scanner;
 import java.io.FileInputStream;
@@ -104,23 +105,15 @@ public class LoginService implements AuthLevel {
 	
 	public User getUserLogin () throws UserNotFoundException {
 		
-		// int retries = 0;
 		User user = null;
 		UserDAOImpl u = new UserDAOImpl ();
 		
-		// do {
-			try {
-				user = u.getLoginInfo (this.userName (), this.userPassword ());
-				
-			} catch (UserNotFoundException e) {
-				throw e;
-//				if (++retries == AuthLevel.maxRetries) {
-//					System.out.println ("Login failed - goodbye.");
-//					log.info("User login unsuccessful - exiting.");
-//					System.exit(AuthLevel.SUCCESS);
-//				}
-			}
-		// } while (user == null);
+		try {
+			this.getLoginInfoFromForm ("");
+			user = u.getLoginInfo (this.userName (), this.userPassword ());
+		} catch (UserNotFoundException e) {
+			throw e;
+		}
 		return user;
 	}
 }

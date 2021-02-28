@@ -49,8 +49,8 @@ public class BankApp implements AuthLevel {
 		
 		LoginService l = new LoginService ();
 		User user = null;
+		System.out.println ("\nPlease log in: ");
 		do {
-			l.getLoginInfoFromForm ((retries == 0) ? "Please log in: " : "");
 			try {
 				user = l.getUserLogin ();
 			} catch (UserNotFoundException e) {

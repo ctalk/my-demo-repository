@@ -81,11 +81,12 @@ public class UserDAOImpl implements AuthLevel, UserTable {
 		try {
 			Statement stmt = c.createStatement ();
 			ResultSet rs = stmt.executeQuery(sql);
+			User user = null;
 			if (rs.next ()) {
-			   User user = new User (rs.getString("username"), rs.getString("firstName"),
+			    user = new User (rs.getString("username"), rs.getString("firstName"),
 							rs.getString("lastName"), rs.getInt ("authlevel"), 
 							rs.getString("zipcode"), rs.getString("address"), rs.getString("comment"));
-			   return user;
+			    return user;
 			}
 			
 			log.info ("getLoginInfo: Login info for, \"" + userName + ",\" not found.");
