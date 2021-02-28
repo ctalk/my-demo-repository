@@ -8,6 +8,8 @@ import com.revature.rkiesling.bankmodel.AuthLevel;
 
 import java.util.Scanner;
 import org.apache.log4j.Logger;
+import java.sql.SQLException;
+
 
 public class NewAccountService implements AuthLevel {
 
@@ -65,7 +67,14 @@ public class NewAccountService implements AuthLevel {
 				}
 			}
 		} while ((user == null) && (++retries <= AuthLevel.maxRetries));
-		dao.addUser (user);
+		
+		try {
+			dao.addUser (user);
+		} catch (SQLException e) {
+			// Don't print anything at the moment - the new user form 
+			// has already checked for duplicate accounts.
+			log.info(e.getMessage ());
+		}
 		return user;
 	}
 }
