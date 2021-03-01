@@ -24,6 +24,7 @@ public class JDBCConnection {
 		String username = System.getenv ("db_user");
 		String password = System.getenv ("db_password");
 		Connection connection = DriverManager.getConnection(url, username, password);
+		connection.setAutoCommit (true);
 		return connection;
 	}
 
