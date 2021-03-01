@@ -1,16 +1,18 @@
 package com.revature.rkiesling.bankmodel;
 
+import com.revature.rkiesling.ui.DisplayUserRecord;
+
 public class User {
 	
-	private String userName = "";
-	private String passWord = "";
-	private String firstName = "";
-	private String lastName = "";
-	private String address = "";
-	private Integer zipCode = 0;
-	private String comment = "";
-	private Integer auth = 0;
-    private double balance = 0.0;
+	protected String userName = "";
+	protected String passWord = "";
+	protected String firstName = "";
+	protected String lastName = "";
+	protected String address = "";
+	protected Integer zipCode = 0;
+	protected String comment = "";
+	protected Integer auth = 0;
+    protected double balance = 0.0;
 	
 	public User () {
 		super ();
@@ -81,4 +83,5 @@ public class User {
     public void balance (Double b) {
 	this.balance = b;
     }
+
 }

@@ -83,15 +83,18 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
 		try (Connection conTestUser = JDBCConnection.getConnection ()) {
 			
 			
-			ArrayList<String> testUserNames = new ArrayList <String>(Arrays.asList("marion", "declan"));
-			ArrayList<String> testPasswords = new ArrayList<String>(Arrays.asList("musicman", "bigCommittment"));
+		    ArrayList<String> testUserNames = new ArrayList <String>(Arrays.asList("marion", "declan", "amy"));
+		    ArrayList<String> testPasswords = new ArrayList<String>(Arrays.asList("musicman", "bigCommittment", "amyw"));
+		    int testAuths[] = {AuthLevel.AUTH_CUSTOMER, AuthLevel.AUTH_CUSTOMER, AuthLevel.AUTH_GUEST};
 
 			// Create test user
 			// insert into bank_app.users (username, 
 			//							   firstName, 
 			//                             lastName, 
 			//                             password, 
-			//                             authLevel, 
+			//                             authLevel,
+		        //                             address,
+		        //                             zipcode,
 			//                             comment) 
 			// values (
 			//     Values in testUsernames and testPasswords are unique - 
@@ -101,7 +104,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
 			String createTestSQL = 
 					"insert into " + UserTable.userTableName + " (" +
 					 		"username, firstName, lastName, password, authLevel, address, zipcode, comment)" +
-							" values (?, 'testFirstName', 'testLastName', ?, " + AuthLevel.AUTH_GUEST + ", 'testAddress', " + 
+							" values (?, 'testFirstName', 'testLastName', ?, ?, 'testAddress', " + 
 					      10000 + ", 'Machine generated test data.')";
 			
 			PreparedStatement p = conTestUser.prepareStatement(createTestSQL);
@@ -112,6 +115,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
 				
 				p.setString(1, testUserNames.get(i));
 				p.setString(2, testPasswords.get(i));
+				p.setInt(3, testAuths[i]);
 				p.addBatch ();
 				log.info(" - Adding test user " + testUserNames.get(i) + ".");
 					

@@ -30,6 +30,6 @@ public interface AuthLevel {
 	public static final String adminUsernameProp = "admin_user_id";
 	public static final String adminPasswordProp = "admin_user_pwd";
 	
-	// The number of tries a user has to log in (0... n - 1).
+	// The number of tries a user has to log in (0... n).
 	public static final Integer maxRetries = 2;
 }

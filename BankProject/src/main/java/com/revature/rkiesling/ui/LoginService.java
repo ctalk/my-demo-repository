@@ -2,11 +2,13 @@ package com.revature.rkiesling.ui;
 
 import com.revature.rkiesling.bankmodel.AuthLevel;
 import com.revature.rkiesling.bankmodel.User;
+import com.revature.rkiesling.bankmodel.NewUser;
 import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.bankmodel.exception.UserAlreadyExistsException;
 import com.revature.rkiesling.bankmodel.exception.NewUserException;
 
+import org.apache.log4j.Logger;
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,6 +25,7 @@ public class LoginService implements AuthLevel {
 	
 	private static String adminName = adminDefaultUsername;
 	private static String adminPassword = adminDefaultPassword;
+    static Logger log = Logger.getLogger (LoginService.class);
 	
 	private String userName;
 	private String userPassword;
@@ -111,15 +114,22 @@ public class LoginService implements AuthLevel {
 	public User getUserLogin () throws UserNotFoundException {
 		
 		User user = null;
+		NewUser newUser = null;
 		UserDAO u = new UserDAO ();
 		
 		try {
 			this.getLoginInfoFromForm ("");
-			user = u.getLoginInfo (this.userName (), this.userPassword ());
+			user = u.getLoginInfo (this.userName (),
+					       this.userPassword ());
 		} catch (UserNotFoundException e) {
 			throw e;
 		} catch (NewUserException e) {
-		    user = NewAccountService.createUser ("Please enter the following information:", AuthLevel.AUTH_GUEST);
+		    newUser =
+			NewAccountService.createUser
+			("Please enter the following information:",
+			 AuthLevel.AUTH_GUEST);
+		    log.info ("New user: " + newUser.userName ());
+		    return newUser;
 		}
 		return user;
 	}
