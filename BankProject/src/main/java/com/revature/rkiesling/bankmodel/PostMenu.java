@@ -2,16 +2,18 @@ package com.revature.rkiesling.bankmodel;
 
 import com.revature.rkiesling.util.BankDBUtil;
 import com.revature.rkiesling.ui.Menu;
-import com.revature.rkiesling.ui.NewAccountForm;
-import com.revature.rkiesling.bankmodel.User;
-import com.revature.rkiesling.bankmodel.dao.UserDAOImpl;
+import com.revature.rkiesling.ui.NewAccountService;
+// import com.revature.rkiesling.bankmodel.User;
+import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.ui.ScreenUtil;
+
+import java.sql.SQLException;
 
 public class PostMenu implements Postable, AuthLevel {
 
 	public static void tasks (User user) {
 		
-		UserDAOImpl ui = new UserDAOImpl ();
+		UserDAO ui = new UserDAO ();
 		
 		while (true) {
 			switch (user.auth ())
@@ -31,8 +33,12 @@ public class PostMenu implements Postable, AuthLevel {
 				case 2:
 					break;
 				case 3:
-					User newUser = NewAccountForm.getUserInfoByForm(AuthLevel.AUTH_EMPLOYEE);
-					ui.addUser (newUser);
+					User newUser = NewAccountService.createUser ("Add employee:", AuthLevel.AUTH_EMPLOYEE);
+					try {
+						ui.addUser (newUser);
+					} catch (SQLException e) {
+						// 
+					}
 					ScreenUtil.pause ();
 					break;
 				case 4:

@@ -12,11 +12,11 @@ public interface TransactionTable {
 			new ArrayList<>(Arrays.asList
 					("id serial primary key not null,",
 					 "datetime timestamp default current_timestamp,",
-					 "username varchar(64) not null,",
-					 "ttype int not null,",
-					 "amount numeric not null,",
-					 "rcvr varchar(64) not null,",
-					 "completed int not null,",
+					 "username varchar(64),",
+					 "ttype int,", 
+                                         "amount numeric,",
+					 "rcvr varchar(64),",
+					 "completed int,",
 					 "comment text)"));
 
 }

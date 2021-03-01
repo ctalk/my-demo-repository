@@ -7,7 +7,6 @@ import com.revature.rkiesling.bankmodel.BankTasks;
 import com.revature.rkiesling.bankmodel.AuthLevel;
 import com.revature.rkiesling.bankmodel.User;
 import com.revature.rkiesling.ui.*;
-// import com.revature.rkiesling.ui.Login;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.util.JDBCConnection;
 
@@ -28,6 +27,7 @@ public class BankApp implements AuthLevel {
 		LoginService.getAdminCreds ();
 		int retries = 0;
 
+		// ScreenUtil.pause ();  // This is needed to unstick console sometimes - weird.
 		try {
 			// Make sure we have a connection.  getConnection prints the "Connected" message
 			Connection c = JDBCConnection.getConnection ();

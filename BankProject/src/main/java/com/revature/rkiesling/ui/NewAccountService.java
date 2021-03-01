@@ -72,9 +72,16 @@ public class NewAccountService implements AuthLevel, BalanceTable {
         } while ((user == null) && (++retries <= AuthLevel.maxRetries));
         
         try {
-	    log.info ("Calling adduser");
             udao.addUser (user);
-            pdao.addBalance (user, 200.00, BalanceTable.NEEDS_AUTH);
+            if (authlvl == AuthLevel.AUTH_GUEST) {
+                @SuppressWarnings ("resource")
+		    final Scanner sc = new Scanner (System.in);
+		System.out.println ("Opening balance: ");
+		user.balance(Double.parseDouble(sc.nextLine ()));
+		pdao.addBalance (user, user.balance (),
+				 BalanceTable.NEEDS_AUTH);
+		pdao.postPendingAppl (user);
+            }
         } catch (SQLException e) {
             // Don't print anything at the moment - there should only be
             // duplicate record exceptions, and the new user form has already

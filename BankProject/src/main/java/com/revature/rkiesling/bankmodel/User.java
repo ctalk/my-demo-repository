@@ -10,6 +10,7 @@ public class User {
 	private Integer zipCode = 0;
 	private String comment = "";
 	private Integer auth = 0;
+    private double balance = 0.0;
 	
 	public User () {
 		super ();
@@ -74,4 +75,10 @@ public class User {
 	public void comment (String c) {
 		this.comment = c;
 	}
+    public Double balance () {
+	return this.balance;
+    }
+    public void balance (Double b) {
+	this.balance = b;
+    }
 }
