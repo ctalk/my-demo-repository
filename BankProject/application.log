@@ -61,3 +61,10 @@
 03-02-2021 13:06:07 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
 03-02-2021 13:06:12 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
 03-02-2021 13:06:14 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - new balance = 2700.800048828125
+03-02-2021 13:12:27 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 13:12:33 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 13:13:31 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 13:13:36 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 13:31:00 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 13:31:04 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 13:31:12 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - PostDAO : postBalance : testFirstName testLastName (username amy) depositedmoney.

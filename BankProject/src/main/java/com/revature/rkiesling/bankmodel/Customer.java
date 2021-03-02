@@ -17,6 +17,12 @@ public class Customer implements Postable {
 
     private static Logger log = Logger.getLogger(UserDAO.class);
 
+    private static void daoBalance (User u, Integer ttype) {
+        PostDAO pdao = new PostDAO ();
+        pdao.updateBalance (u, Postable.COMPLETE);
+	pdao.postBalanceOp (u, ttype);
+    }
+
     public static void customerWithdraw (User u) {
         PostDAO pdao = new PostDAO ();
         pdao.getBalanceForUser (u);
@@ -30,7 +36,21 @@ public class Customer implements Postable {
         } else {
             double d1 = u.balance () - d;
             u.balance (d1);
-            pdao.updateBalance (u, Postable.COMPLETE);
+            daoBalance (u, Postable.POST_WITHDRAWAL);
+        }
+    }
+
+    public static void customerDeposit (User u) {
+        PostDAO pdao = new PostDAO ();
+        pdao.getBalanceForUser (u);
+        double d = NumericInput.getDouble ("Enter the deposit amount: ");
+        if (d < 0.0) {
+            System.out.println ("You can't deposit a negative amount.");
+            ScreenUtil.pause ();
+        } else {
+            double d1 = u.balance () + d;
+            u.balance (d1);
+            daoBalance (u, Postable.POST_DEPOSIT);
         }
     }
 
@@ -45,6 +65,7 @@ public class Customer implements Postable {
 
         m.add("View your account");
         m.add("Withdraw money");
+        m.add("Deposit money");
         m.add("Exit");
 
         while (true) {
@@ -66,6 +87,9 @@ public class Customer implements Postable {
                     customerWithdraw (user);
                     break;
                 case 3:
+                    customerDeposit (user);
+                    break;
+                case 4:
                     System.out.println ("\nExiting - goodbye.");
                     System.exit(AuthLevel.SUCCESS);
                     break;

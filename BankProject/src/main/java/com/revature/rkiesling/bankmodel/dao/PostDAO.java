@@ -96,6 +96,45 @@ public class PostDAO implements BalanceTable, AuthLevel,
         JDBCConnection.close (c);
     }
 
+    public void postBalanceOp (User user, Integer ttype) {
+        Connection c = null;
+        try  {
+                c = JDBCConnection.getConnection ();
+        } catch (SQLException e) {
+            System.out.println ("Connection error: " + e.getMessage ());
+            log.error ("JDBCConnection error: " + e.getMessage ());
+            System.exit(AuthLevel.FAIL);
+        }
+
+        StringBuffer sql = new StringBuffer ("insert into " +
+                                         TransactionTable.transactionTableName +
+                                             "(username, " +
+                                             "ttype, " +
+                                             "amount, " +
+                                             "completed)");
+        sql.append(" values (");
+        sql.append("'" + user.userName () + "', ");
+        sql.append (ttype + ", ");
+        sql.append(user.balance() + ", ");
+        sql.append(Postable.COMPLETE + ")");
+
+        try {
+            Statement stmt = c.createStatement ();
+            @SuppressWarnings("unused")
+                Integer nUpdates = stmt.executeUpdate(sql.toString ());
+        } catch (SQLException e) {
+            log.error("Bad SQL query: " + sql);
+            // throw e;  // needed? 
+        }
+
+        log.info ("PostDAO : postBalance : " + user.firstName () + " " + user.lastName () + " (username " +
+                  user.userName () + ") " +
+		  ((ttype == Postable.POST_WITHDRAWAL) ? "withdrew" : "deposited") +
+		  "money.");
+
+        JDBCConnection.close (c);
+    }
+
     public void addBalance (User user, Double balance, Integer auth)
         throws SQLException {
         Connection c = null;
