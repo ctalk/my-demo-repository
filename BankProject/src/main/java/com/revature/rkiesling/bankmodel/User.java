@@ -12,7 +12,7 @@ public class User {
 	protected Integer zipCode = 0;
 	protected String comment = "";
 	protected Integer auth = 0;
-    protected double balance = 0.0;
+    protected Double balance = 0.0;
 	
 	public User () {
 		super ();
@@ -80,7 +80,7 @@ public class User {
     public Double balance () {
 	return this.balance;
     }
-    public void balance (Double b) {
+    public void balance (double b) {
 	this.balance = b;
     }
 

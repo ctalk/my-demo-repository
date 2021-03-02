@@ -97,14 +97,16 @@ public class PostDAO implements BalanceTable, AuthLevel,
 
         try (Connection c = JDBCConnection.getConnection ()) {
             StringBuffer sql = new StringBuffer ("select (balance) from " + BalanceTable.balanceTableName +
-                                                 "where username = " + user.userName ());
-            // log.info(sql);
+                                                 " where username = '");
+	    sql.append (user.userName () + "'");
 
             try {
                 Statement stmt = c.createStatement ();
                 ResultSet rs = stmt.executeQuery (sql.toString ());
                 if (rs.next ()) {
-                    user.balance(rs.getDouble ("balance"));
+		    double d = (double)rs.getFloat ("balance");
+		    log.info ("d = " + d);
+                    user.balance(d);
                 }
             } catch (SQLException e) {
                 log.error("Bad SQL query: " + sql);

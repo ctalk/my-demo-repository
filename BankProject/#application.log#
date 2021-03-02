@@ -389,7 +389,7 @@
 03-01-2021 17:16:05 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
 03-01-2021 17:16:10 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
 03-01-2021 17:16:11 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAO] - Bad SQL query: select (balance) from bank_app.balanceswhere username = amy
-03-01-2021 17:17:31 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+b03-01-2021 17:17:31 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
 03-01-2021 17:17:35 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
 03-01-2021 17:17:36 {ERROR} [com.revature.rkiesling.bankmodel.dao.UserDAO] - Bad SQL query: select (balance) from bank_app.balanceswhere username = amy
 03-01-2021 17:18:08 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
@@ -400,51 +400,3 @@
 03-01-2021 17:21:21 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
 03-01-2021 17:21:26 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
 03-01-2021 17:21:27 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - have rs!
-03-01-2021 17:23:53 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:23:58 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:24:26 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:24:30 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:24:31 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:25:54 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:25:59 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:26:00 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:26:37 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:26:41 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:26:42 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:26:47 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:28:21 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:28:25 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:28:26 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:28:37 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:28:41 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:28:42 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:31:06 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:31:11 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:31:13 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:31:53 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:31:57 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:31:58 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:32:32 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:32:35 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:32:37 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:34:18 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:34:23 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:34:24 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:34:58 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:35:02 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:35:03 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:35:58 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:36:02 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:36:03 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:36:35 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:36:40 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:36:40 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:37:27 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:37:30 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:37:31 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:37:44 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:37:48 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:37:50 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
-03-01-2021 17:38:19 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
-03-01-2021 17:38:23 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
-03-01-2021 17:38:24 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0

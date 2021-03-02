@@ -3,6 +3,7 @@ package com.revature.rkiesling.bankmodel;
 import com.revature.rkiesling.ui.Menu;
 import com.revature.rkiesling.ui.DisplayUserRecord;
 import com.revature.rkiesling.bankmodel.dao.UserDAO;
+import com.revature.rkiesling.bankmodel.dao.PostDAO;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 
 import org.apache.log4j.Logger;
@@ -30,7 +31,8 @@ public class NewUser extends User {
 
     public void newUserMenu (NewUser user) {
 	Menu m = new Menu ();
-	UserDAO dao = new UserDAO ();
+	UserDAO udao = new UserDAO ();
+	PostDAO pdao = new PostDAO ();
 	m.add("View your account information");
 	m.add("Exit");
 	while (true) {
@@ -40,7 +42,8 @@ public class NewUser extends User {
 		    System.out.println ("Your Account:");
 		    System.out.println ("---- -------");
 		    try {
-		    	User nuser = dao.getLoginInfo (user.userName ());
+		    	User nuser = udao.getLoginInfo (user.userName ());
+			pdao.getBalanceForUser (nuser);
 		    	DisplayUserRecord.printRec(nuser);
 			System.out.println ("");
 		    } catch (UserNotFoundException e) {
