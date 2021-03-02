@@ -21,7 +21,7 @@ public class Customer {
 	    // Scanner s = new Scanner (System.in);
 	//        String ans = "";
 
-        m.add("Review your account");
+        m.add("View your account");
         m.add("Exit");
 
         while (true) {

@@ -8,6 +8,7 @@ import com.revature.rkiesling.bankmodel.exception.UserAlreadyExistsException;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.bankmodel.AuthLevel;
 import com.revature.rkiesling.bankmodel.BalanceTable;
+import com.revature.rkiesling.ui.NumericInput;
 
 import java.util.Scanner;
 import org.apache.log4j.Logger;
@@ -45,8 +46,10 @@ public class NewAccountService implements AuthLevel, BalanceTable {
                 user.lastName(sc.nextLine ());
                 System.out.print("Address: ");
                 user.address(sc.nextLine ());
-                System.out.print("Zip code: ");
-                user.zipCode(sc.nextLine ());
+                // System.out.print("Zip code: ");
+                // user.zipCode(sc.nextLine ());
+                Integer zip = NumericInput.getInt ("Zip code: ");
+                user.zipCode (zip.toString ());
                 System.out.print("Comment (optional): ");
                 user.comment(sc.nextLine ());
                 return user;
@@ -75,20 +78,20 @@ public class NewAccountService implements AuthLevel, BalanceTable {
         try {
             udao.addUser (user);
             if (authlvl == AuthLevel.AUTH_GUEST) {
-                @SuppressWarnings ("resource")
-		    final Scanner sc = new Scanner (System.in);
-		System.out.println ("Opening balance: ");
-		user.balance(Double.parseDouble(sc.nextLine ()));
-		pdao.addBalance (user, user.balance (),
-				 BalanceTable.NEEDS_AUTH);
-		pdao.postPendingAppl (user);
+                user.balance(NumericInput.getDouble ("Opening balance: "));
+                pdao.addBalance (user, user.balance (),
+                                 BalanceTable.NEEDS_AUTH);
+                pdao.postPendingAppl (user);
             }
         } catch (SQLException e) {
             // Don't print anything at the moment - there should only be
             // duplicate record exceptions, and the new user form has already
             // checked for them.
-            log.info(e.getMessage ());
+            log.info("NewAccountService.createUser (): " + e.getMessage ());
         }
+
+        System.out.println ("Thank you!  You will be able to deposit, withdraw, and transfer money when your account is approved.");
+        log.info ("NewAccountService.createUser (): New account " + user.userName () + " created.");
         return user;
     }
 }
