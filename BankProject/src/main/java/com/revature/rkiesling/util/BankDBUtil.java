@@ -83,9 +83,9 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                 try (Connection conTestUser = JDBCConnection.getConnection ()) {
                         
                         
-                    ArrayList<String> testUserNames = new ArrayList <String>(Arrays.asList("marion", "declan", "amy"));
-                    ArrayList<String> testPasswords = new ArrayList<String>(Arrays.asList("musicman", "bigCommittment", "amyw"));
-                    int testAuths[] = {AuthLevel.AUTH_CUSTOMER, AuthLevel.AUTH_CUSTOMER, AuthLevel.AUTH_GUEST};
+                    ArrayList<String> testUserNames = new ArrayList <String>(Arrays.asList("marion", "declan", "amy", "anne"));
+                    ArrayList<String> testPasswords = new ArrayList<String>(Arrays.asList("musicman", "bigCommittment", "amyw", "cleeves"));
+                    int testAuths[] = {AuthLevel.AUTH_CUSTOMER, AuthLevel.AUTH_CUSTOMER, AuthLevel.AUTH_GUEST, AuthLevel.AUTH_EMPLOYEE};
 
                         // Create test user
                         // insert into bank_app.users (username, 
@@ -97,8 +97,8 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         //                             zipcode,
                         //                             comment) 
                         // values (
-                        //     Values in testUsernames and testPasswords are unique - 
-                        //         all of the other fields can be the same, because, at this time,  while we're only testing logins.
+                        //     Values in testUsernames, testPasswords, and testAuths are unique - 
+                        //         all of the other fields can be the same, so far.
                         // )
                         
                         String createTestSQL = 

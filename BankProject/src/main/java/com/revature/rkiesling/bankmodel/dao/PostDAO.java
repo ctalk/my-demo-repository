@@ -125,4 +125,5 @@ public class PostDAO implements BalanceTable, AuthLevel,
         }
 
     }
+
 }

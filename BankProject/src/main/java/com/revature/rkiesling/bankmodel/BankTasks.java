@@ -5,6 +5,7 @@ import com.revature.rkiesling.ui.Menu;
 import com.revature.rkiesling.ui.NewAccountService;
 import com.revature.rkiesling.bankmodel.User;
 import com.revature.rkiesling.bankmodel.NewUser;
+import com.revature.rkiesling.bankmodel.Employee;
 import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.ui.ScreenUtil;
 
@@ -50,11 +51,12 @@ public class BankTasks implements Postable, AuthLevel {
 			}
 			// break;   // notreached
 		case AuthLevel.AUTH_EMPLOYEE:
+		    Employee.employeeMenu (user);
 		break;
 		case AuthLevel.AUTH_GUEST:
-			NewUser newUser = new NewUser (user.userName (), user.firstName (), user.lastName (), 
-					user.auth (), user.zipCode ().toString (), user.address (), user.comment ());
-			newUser.newUserMenu (newUser);
+		    NewUser newUser = new NewUser (user.userName (), user.firstName (), user.lastName (), 
+						   user.auth (), user.zipCode ().toString (), user.address (), user.comment ());
+		    newUser.newUserMenu (newUser);
 		break;
 			
 		}
