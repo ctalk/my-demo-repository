@@ -937,3 +937,6 @@
 03-02-2021 04:03:52 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
 03-02-2021 04:03:56 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - update bank_app.users set authlevel = 2 where username = 'amy'
 03-02-2021 04:03:56 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - PostDAO : postApprovedAppl : testFirstName testLastName (username amy) had their account authorized.
+03-02-2021 04:20:47 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 04:20:54 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User anne: Login successful.
+03-02-2021 04:20:58 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125

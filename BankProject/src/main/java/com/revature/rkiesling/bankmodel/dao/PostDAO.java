@@ -4,6 +4,7 @@ import com.revature.rkiesling.bankmodel.BalanceTable;
 import com.revature.rkiesling.bankmodel.TransactionTable;
 import com.revature.rkiesling.bankmodel.Postable;
 import com.revature.rkiesling.bankmodel.AuthLevel;
+import com.revature.rkiesling.bankmodel.Post;
 import com.revature.rkiesling.bankmodel.User;
 import com.revature.rkiesling.util.JDBCConnection;
 
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.lang.StringBuffer;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class PostDAO implements BalanceTable, AuthLevel,
                                 TransactionTable, Postable {
@@ -178,5 +180,30 @@ public class PostDAO implements BalanceTable, AuthLevel,
             log.error ("PostDAO: postsqlUpdate: " + e.getMessage ());
         }
     }
+
+    public ArrayList<Post> getTransactions (int authstatus) {
+        ArrayList<Post> postSet = new ArrayList<Post>();
+        try (Connection c = JDBCConnection.getConnection ()) {
+            StringBuffer sql = new StringBuffer ("select * from " + UserTable.userTableName + " where authlevel = " + AuthLevel.AUTH_GUEST);
+            Statement stmt = c.createStatement ();
+            ResultSet rs = stmt.executeQuery(sql.toString ());
+            while (rs.next ()) {
+                Double zip = new Double (rs.getDouble ("zipcode"));
+                Integer zipInt = zip.intValue();
+		//                User u = new User (rs.getString ("username"),
+		//                                   rs.getString ("firstname"),
+		//                                   rs.getString ("lastname"),
+		//                                   rs.getInt ("authlevel"),
+		//                                   zipInt.toString (),
+		//                                   rs.getString ("address"),
+		//                                   rs.getString ("comment"));
+		//                userSet.add(u);
+            }
+        } catch (SQLException e) {
+            log.error ("getUsers (int): " + e.getMessage ());
+        }
+        return postSet;
+    }
+
 
 }

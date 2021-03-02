@@ -3,10 +3,9 @@ package com.revature.rkiesling.bankmodel;
 import com.revature.rkiesling.ui.Menu;
 import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.dao.PostDAO;
-import com.revature.rkiesling.bankmodel.AuthLevel;
-import com.revature.rkiesling.bankmodel.BalanceTable;
-import com.revature.rkiesling.bankmodel.Postable;
+import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.ui.DisplayUserRecord;
+import com.revature.rkiesling.ui.ScreenUtil;
 
 import org.apache.log4j.Logger;
 import java.util.ArrayList;
@@ -25,6 +24,8 @@ public class Employee implements AuthLevel, BalanceTable, Postable {
         String ans = "";
 
         m.add("Approve an Account Application");
+        m.add("View an account");
+	m.add("View transactions");
         m.add("Exit");
 
         while (true) {
@@ -44,8 +45,8 @@ public class Employee implements AuthLevel, BalanceTable, Postable {
                             if (ans.equals("a") || ans.equals("A")) {
                                 dao.update (u, AuthLevel.AUTH_CUSTOMER);
                                 pdao.updateBalance (u, BalanceTable.BAL_AUTH);
-				pdao.postApprovedAppl (u);
-				// Set the application's posting in the transaction tale to 'COMPLETE'.
+                                pdao.postApprovedAppl (u);
+                                // Set the application's posting in the transaction tale to 'COMPLETE'.
                                 String sql = "update " + TransactionTable.transactionTableName +
                                     " set completed = " + Postable.COMPLETE +
                                     " where username = '" + u.userName + "' and ttype = " +
@@ -58,6 +59,20 @@ public class Employee implements AuthLevel, BalanceTable, Postable {
                     System.out.println ("");
                     break;
                 case 2:
+                    System.out.print ("User name of account to view: ");
+                    try {
+                        User u = dao.getLoginInfo (s.nextLine ());
+                        pdao.getBalanceForUser (u);
+                        DisplayUserRecord.printRec (u);
+                        
+                    } catch (UserNotFoundException e) {
+                        log.error ("Employee.employeeMenu (option 2) : " + e.getMessage ());
+                    }
+                    ScreenUtil.pause ();
+                    break;
+		case 3:
+		    break;
+                case 4:
                     System.out.println ("\nExiting - goodbye.");
                     System.exit(AuthLevel.SUCCESS);
                     break;
