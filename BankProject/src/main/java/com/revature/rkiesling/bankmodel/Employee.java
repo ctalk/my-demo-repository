@@ -5,12 +5,16 @@ import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.dao.PostDAO;
 import com.revature.rkiesling.bankmodel.AuthLevel;
 import com.revature.rkiesling.bankmodel.BalanceTable;
+import com.revature.rkiesling.bankmodel.Postable;
 import com.revature.rkiesling.ui.DisplayUserRecord;
 
+import org.apache.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Employee implements AuthLevel, BalanceTable {
+public class Employee implements AuthLevel, BalanceTable, Postable {
+
+    private static Logger log = Logger.getLogger(UserDAO.class);
 
     public static void employeeMenu (User user) {
         Menu m = new Menu ();
@@ -39,7 +43,13 @@ public class Employee implements AuthLevel, BalanceTable {
                             ans = s.nextLine ();
                             if (ans.equals("a") || ans.equals("A")) {
                                 dao.update (u, AuthLevel.AUTH_CUSTOMER);
-				pdao.updateBalance (u, BalanceTable.BAL_AUTH);
+                                pdao.updateBalance (u, BalanceTable.BAL_AUTH);
+                                String sql = "update " + TransactionTable.transactionTableName +
+                                    " set completed = " + Postable.COMPLETE +
+                                    " where username = '" + u.userName + "' and ttype = " +
+                                    Postable.POST_NEW_ACCOUNT_APPL;
+                                pdao.postSQLUpdate (sql);
+                                                    
                             }
                         }
                     }

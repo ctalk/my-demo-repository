@@ -158,6 +158,22 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
 			    log.error ("makeTestUserData (balance): " + e.getMessage ());
 			}
 
+			try (Connection conTestUser3 = JDBCConnection.getConnection ()) {
+			    String createApplicationTransSQL = 
+				"insert into " + TransactionTable.transactionTableName + " (username, ttype, amount, completed) " + 
+				" values ('amy', 1, 3000.80, 0)";
+			    PreparedStatement pApp = conTestUser3.prepareStatement(createApplicationTransSQL);
+			    pApp.executeUpdate ();
+
+			    try {
+				conTestUser3.close ();
+			    } catch (SQLException e) {
+				log.error ("makeTestUserData (transaction user application): " + e.getMessage ());
+			    }
+			} catch (SQLException e) {
+			    log.error ("makeTestUserData (balance): " + e.getMessage ());
+			}
+			
                 } catch (SQLException e) {
                     reportSQLException ("makeTestUserData: ", e);
                 }
