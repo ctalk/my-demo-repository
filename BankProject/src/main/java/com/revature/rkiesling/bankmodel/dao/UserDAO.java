@@ -59,12 +59,7 @@ public class UserDAO implements AuthLevel, UserTable {
                         log.error("Bad SQL query: " + sql);
                 } 
         
-                try { 
-                        c.close ();
-                } catch (SQLException e) {
-                        log.error("JDBCConnection.close(): " + e.getMessage()); 
-                }
-                
+                JDBCConnection.close (c);
                 return null;
 
         }
@@ -96,12 +91,7 @@ public class UserDAO implements AuthLevel, UserTable {
                         log.error("Bad SQL query: " + sql);
                 } 
         
-                try { 
-                        c.close ();
-                } catch (SQLException e) {
-                        log.error("JDBCConnection.close(): " + e.getMessage()); 
-                }
-                
+                JDBCConnection.close (c);
                 return null;
 
         }
@@ -138,13 +128,7 @@ public class UserDAO implements AuthLevel, UserTable {
                         log.error("Bad SQL query: " + sql);
                         throw e;
                 } 
-                try { 
-                        c.close ();
-                } catch (SQLException e) {
-                        log.error("JDBCConnection.close(): " + e.getMessage()); 
-                }
-
-
+                JDBCConnection.close (c);
         }
 
     public ArrayList<User> getUsers (int authstatus) {
@@ -176,7 +160,7 @@ public class UserDAO implements AuthLevel, UserTable {
             StringBuffer sql = new StringBuffer ("update " + UserTable.userTableName + " set authlevel = " + newAuthStatus +
                                                  " where username = '" + u.userName () + "'");
             Statement stmt = c.createStatement ();
-	    log.info (sql.toString ());
+            log.info (sql.toString ());
             @SuppressWarnings("unused")
             Integer nUpdates = stmt.executeUpdate(sql.toString ());
 

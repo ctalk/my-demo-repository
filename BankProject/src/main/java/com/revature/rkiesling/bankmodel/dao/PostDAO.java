@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.lang.StringBuffer;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -181,26 +184,28 @@ public class PostDAO implements BalanceTable, AuthLevel,
         }
     }
 
-    public ArrayList<Post> getTransactions (int authstatus) {
+    public ArrayList<Post> getTransactions () {
         ArrayList<Post> postSet = new ArrayList<Post>();
         try (Connection c = JDBCConnection.getConnection ()) {
-            StringBuffer sql = new StringBuffer ("select * from " + UserTable.userTableName + " where authlevel = " + AuthLevel.AUTH_GUEST);
+            StringBuffer sql = new StringBuffer ("select * from " + TransactionTable.transactionTableName);
             Statement stmt = c.createStatement ();
             ResultSet rs = stmt.executeQuery(sql.toString ());
             while (rs.next ()) {
-                Double zip = new Double (rs.getDouble ("zipcode"));
-                Integer zipInt = zip.intValue();
-		//                User u = new User (rs.getString ("username"),
-		//                                   rs.getString ("firstname"),
-		//                                   rs.getString ("lastname"),
-		//                                   rs.getInt ("authlevel"),
-		//                                   zipInt.toString (),
-		//                                   rs.getString ("address"),
-		//                                   rs.getString ("comment"));
-		//                userSet.add(u);
+                Timestamp ts = rs.getTimestamp ("datetime");
+                LocalDateTime ldt = ts.toLocalDateTime ();
+                DateTimeFormatter df = DateTimeFormatter.ofPattern ("yyyy-MM-dd HH:mm:ss");
+                Post p = new Post (rs.getInt ("ttype"),
+                                   ldt.format (df),
+                                   rs.getString ("username"),
+                                   rs.getInt ("ttype"),
+                                   rs.getDouble ("amount"),
+                                   rs.getString ("rcvr"),
+                                   rs.getInt ("completed"));
+                postSet.add(p);
             }
+            JDBCConnection.close (c);
         } catch (SQLException e) {
-            log.error ("getUsers (int): " + e.getMessage ());
+            log.error ("PostDAO.getTransactions (): " + e.getMessage ());
         }
         return postSet;
     }

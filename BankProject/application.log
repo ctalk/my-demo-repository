@@ -940,3 +940,22 @@
 03-02-2021 04:20:47 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
 03-02-2021 04:20:54 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User anne: Login successful.
 03-02-2021 04:20:58 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 05:35:28 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 05:36:15 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 05:36:20 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User anne: Login successful.
+03-02-2021 05:36:22 {ERROR} [com.revature.rkiesling.bankmodel.dao.PostDAO] - getUsers (int): ERROR: column "authlevel" does not exist
+  Position: 43
+03-02-2021 05:39:20 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 05:39:27 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User anne: Login successful.
+03-02-2021 05:39:29 {ERROR} [com.revature.rkiesling.bankmodel.dao.PostDAO] - getUsers (int): ERROR: column "authlevel" does not exist
+  Position: 43
+03-02-2021 05:43:32 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 05:43:38 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User anne: Login successful.
+03-02-2021 05:43:41 {ERROR} [com.revature.rkiesling.bankmodel.dao.PostDAO] - PostDAO.getTransactions (): ERROR: column "authlevel" does not exist
+  Position: 43
+03-02-2021 05:45:27 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 05:45:31 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User anne: Login successful.
+03-02-2021 05:46:37 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 05:46:41 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User anne: Login successful.
+03-02-2021 05:47:16 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 05:47:20 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User anne: Login successful.

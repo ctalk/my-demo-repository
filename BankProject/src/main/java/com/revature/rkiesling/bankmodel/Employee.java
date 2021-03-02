@@ -5,6 +5,7 @@ import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.dao.PostDAO;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.ui.DisplayUserRecord;
+import com.revature.rkiesling.ui.DisplayPostRecord;
 import com.revature.rkiesling.ui.ScreenUtil;
 
 import org.apache.log4j.Logger;
@@ -19,13 +20,14 @@ public class Employee implements AuthLevel, BalanceTable, Postable {
         Menu m = new Menu ();
         UserDAO dao = new UserDAO ();
         PostDAO pdao = new PostDAO ();
+        ArrayList<Post> postSet = new ArrayList<>();
         @SuppressWarnings("resource")
         Scanner s = new Scanner (System.in);
         String ans = "";
 
         m.add("Approve an Account Application");
         m.add("View an account");
-	m.add("View transactions");
+        m.add("View transactions");
         m.add("Exit");
 
         while (true) {
@@ -70,8 +72,19 @@ public class Employee implements AuthLevel, BalanceTable, Postable {
                     }
                     ScreenUtil.pause ();
                     break;
-		case 3:
-		    break;
+                case 3:
+                    postSet = pdao.getTransactions ();
+                    System.out.println ("Number of transactions: " + postSet.size());
+                    System.out.print ("View now (Y/n)? ");
+                    ans = s.nextLine ();
+                    if (ans.equals("") || ans.equals("y") || ans.equals("Y")) {
+                        System.out.println ("");
+                        for (Post p: postSet) {
+                            DisplayPostRecord.printRec (p);
+                            ScreenUtil.pause ();
+                        }
+                    }
+                    break;
                 case 4:
                     System.out.println ("\nExiting - goodbye.");
                     System.exit(AuthLevel.SUCCESS);

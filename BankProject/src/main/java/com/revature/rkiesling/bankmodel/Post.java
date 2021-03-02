@@ -3,11 +3,11 @@ package com.revature.rkiesling.bankmodel;
 public class Post implements Postable {
         
     private int postType = Post.POST_NULL;
-    private String dateTime = "";
+    private String timestamp = "";
     private String userName = "";
     private Integer tType = Postable.POST_NULL;
     private Double amount = 0.0;
-    private String receiver = "";
+    private String destUser = "";
     private Integer completed = Postable.INCOMPLETE;
         
     public Post () {
@@ -18,15 +18,15 @@ public class Post implements Postable {
         this.postType = p;
     }
 
-    public Post (int posttype, String datetime, String username,
+    public Post (int posttype, String timestamp, String username,
                  int ttype, double amount, String rcvr, int completed) {
         super ();
         this.postType = posttype;
-        this.dateTime = datetime;
+        this.timestamp = timestamp;
         this.userName = username;
         this.tType = ttype;
         this.amount = amount;
-        this.receiver = rcvr;
+        this.destUser = rcvr;
         this.completed = completed;
     }
 
@@ -36,11 +36,11 @@ public class Post implements Postable {
     public void postType (int p) {
         this.postType = p;
     }
-    public String dateTime () {
-        return this.dateTime;
+    public String timestamp () {
+        return this.timestamp;
     }
-    public void dateTime (String d) {
-        this.dateTime = d;
+    public void timestamp (String d) {
+        this.timestamp = d;
     }
     public String userName () {
         return this.userName;
@@ -60,11 +60,11 @@ public class Post implements Postable {
     public void amount (double d) {
         this.amount = d;
     }
-    public String receiver () {
-        return this.receiver;
+    public String destUser () {
+        return this.destUser;
     }
-    public void receiver (String s) {
-        this.receiver = s;
+    public void destUser (String s) {
+        this.destUser = s;
     }
     public Integer completed () {
         return this.completed;

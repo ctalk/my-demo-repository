@@ -65,7 +65,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                                         sql = "create schema " + UserTable.schemaName;
                                         p = conSchema.prepareStatement (sql);
                                         p.executeUpdate ();
-                                        conSchema.close ();
+                                        JDBCConnection.close (conSchema);
 
                                         log.info("Success.");
                                 } catch (SQLException e) {
@@ -122,58 +122,50 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         }
                         try {
                                 p.executeBatch ();
-                                conTestUser.close ();
+                                JDBCConnection.close (conTestUser);
                                 log.info("Success.");
                         } catch (SQLException e) {
 
                                 reportSQLException ("makeTestUserData: ", e);
                         }
                                 
-			try (Connection conTestUser2 = JDBCConnection.getConnection ()) {
-			    String createBalanceSQL = 
-				"insert into " + BalanceTable.balanceTableName + " (username, balance, auth) " + 
-				" values ('amy', 3000.80, 0)";
-			    PreparedStatement pbal = conTestUser2.prepareStatement(createBalanceSQL);
-			    pbal.executeUpdate ();
+                        try (Connection conTestUser2 = JDBCConnection.getConnection ()) {
+                            String createBalanceSQL = 
+                                "insert into " + BalanceTable.balanceTableName + " (username, balance, auth) " + 
+                                " values ('amy', 3000.80, 0)";
+                            PreparedStatement pbal = conTestUser2.prepareStatement(createBalanceSQL);
+                            pbal.executeUpdate ();
 
-			    createBalanceSQL = 
-				"insert into " + BalanceTable.balanceTableName + " (username, balance, auth) " + 
-				" values ('marion', 4000.25, 1)";
-			    pbal = conTestUser2.prepareStatement(createBalanceSQL);
-			    pbal.executeUpdate ();
-			    
-			    createBalanceSQL = 
-				"insert into " + BalanceTable.balanceTableName + " (username, balance, auth) " + 
-				" values ('declan', 2200.10, 1)";
-			    pbal = conTestUser2.prepareStatement(createBalanceSQL);
-			    pbal.executeUpdate ();
+                            createBalanceSQL = 
+                                "insert into " + BalanceTable.balanceTableName + " (username, balance, auth) " + 
+                                " values ('marion', 4000.25, 1)";
+                            pbal = conTestUser2.prepareStatement(createBalanceSQL);
+                            pbal.executeUpdate ();
+                            
+                            createBalanceSQL = 
+                                "insert into " + BalanceTable.balanceTableName + " (username, balance, auth) " + 
+                                " values ('declan', 2200.10, 1)";
+                            pbal = conTestUser2.prepareStatement(createBalanceSQL);
+                            pbal.executeUpdate ();
 
-			    
-			    try {
-				conTestUser2.close ();
-			    } catch (SQLException e) {
-				log.error ("makeTestUserData (balance close): " + e.getMessage ());
-			    }
-			} catch (SQLException e) {
-			    log.error ("makeTestUserData (balance): " + e.getMessage ());
-			}
+                            
+                            JDBCConnection.close (conTestUser2);
+                        } catch (SQLException e) {
+                            log.error ("makeTestUserData (balance): " + e.getMessage ());
+                        }
 
-			try (Connection conTestUser3 = JDBCConnection.getConnection ()) {
-			    String createApplicationTransSQL = 
-				"insert into " + TransactionTable.transactionTableName + " (username, ttype, amount, completed) " + 
-				" values ('amy', 1, 3000.80, 0)";
-			    PreparedStatement pApp = conTestUser3.prepareStatement(createApplicationTransSQL);
-			    pApp.executeUpdate ();
+                        try (Connection conTestUser3 = JDBCConnection.getConnection ()) {
+                            String createApplicationTransSQL = 
+                                "insert into " + TransactionTable.transactionTableName + " (username, ttype, amount, completed) " + 
+                                " values ('amy', 1, 3000.80, 0)";
+                            PreparedStatement pApp = conTestUser3.prepareStatement(createApplicationTransSQL);
+                            pApp.executeUpdate ();
 
-			    try {
-				conTestUser3.close ();
-			    } catch (SQLException e) {
-				log.error ("makeTestUserData (transaction user application): " + e.getMessage ());
-			    }
-			} catch (SQLException e) {
-			    log.error ("makeTestUserData (balance): " + e.getMessage ());
-			}
-			
+                            JDBCConnection.close (conTestUser3);
+                        } catch (SQLException e) {
+                            log.error ("makeTestUserData (balance): " + e.getMessage ());
+                        }
+                        
                 } catch (SQLException e) {
                     reportSQLException ("makeTestUserData: ", e);
                 }
@@ -214,7 +206,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                                         log.error("Failed to create admin user.");
                                 }
 
-                                conAdminUser.close ();
+                                JDBCConnection.close (conAdminUser);
                                 log.info ("Create admin user.");
                         } catch (SQLException e) {
                                 reportSQLException ("createAdminUser: " + createAdminSQL + " : ", e);
@@ -236,7 +228,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         p.addBatch (sqlBalance);
                         p.executeBatch ();
                         log.info("Tables truncated.");
-                        clrTable.close();
+                        JDBCConnection.close (clrTable);
                 } catch (SQLException e) {
                         reportSQLException ("clearTables: ", e);
                 }
@@ -267,7 +259,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         pUser = conTable.prepareStatement(queryUser.toString());
                         try {
                                 pUser.executeUpdate ();
-                                // conTable.close ();
+                                JDBCConnection.close (conTable);
                                 log.info("makeBankTables: created bank_app.user table.");
                         } catch (SQLException e) {
                                 reportSQLException ("makeBankTables: " + queryUser.toString () + " : ", e);
@@ -291,7 +283,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         pTrans = conTable.prepareStatement(queryTrans.toString());
                         try {
                                 pTrans.executeUpdate ();
-                                // conTable.close ();
+                                JDBCConnection.close (conTable);
                                 log.info("makeBankTables: created " + TransactionTable.transactionTableName + " table.");
                         } catch (SQLException e) {
                                 reportSQLException ("makeBankTables: " + queryTrans.toString () + " : ", e);
@@ -320,7 +312,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                                 reportSQLException ("makeBankTables: " + queryBalance.toString () + " : ", e);
                         }
                         
-                        conTable.close ();
+                        JDBCConnection.close (conTable);
                                                 
                 } catch (SQLException e) {
                         reportSQLException ("makeBankTables: ", e);
