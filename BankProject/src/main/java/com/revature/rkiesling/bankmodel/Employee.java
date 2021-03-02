@@ -4,12 +4,13 @@ import com.revature.rkiesling.ui.Menu;
 import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.dao.PostDAO;
 import com.revature.rkiesling.bankmodel.AuthLevel;
+import com.revature.rkiesling.bankmodel.BalanceTable;
 import com.revature.rkiesling.ui.DisplayUserRecord;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Employee {
+public class Employee implements AuthLevel, BalanceTable {
 
     public static void employeeMenu (User user) {
         Menu m = new Menu ();
@@ -38,6 +39,7 @@ public class Employee {
                             ans = s.nextLine ();
                             if (ans.equals("a") || ans.equals("A")) {
                                 dao.update (u, AuthLevel.AUTH_CUSTOMER);
+				pdao.updateBalance (u, BalanceTable.BAL_AUTH);
                             }
                         }
                     }

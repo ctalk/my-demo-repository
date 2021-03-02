@@ -126,4 +126,17 @@ public class PostDAO implements BalanceTable, AuthLevel,
 
     }
 
+    public void updateBalance (User u, Integer newAuth) {
+        try (Connection c = JDBCConnection.getConnection ()) {
+            StringBuffer sql = new StringBuffer ("update " + BalanceTable.balanceTableName + " set auth = " + newAuth +
+                                                 " where username = '" + u.userName () + "'");
+            Statement stmt = c.createStatement ();
+	    log.info (sql.toString ());
+            @SuppressWarnings("unused")
+            Integer nUpdates = stmt.executeUpdate(sql.toString ());
+
+        } catch (SQLException e) {
+            log.error ("update (User, int): " + e.getMessage ());
+        }
+    }
 }
