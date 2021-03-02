@@ -29,6 +29,6 @@ use to start creating users and accounts.
 Some of the app's tests for successful operations use DBMS data that
 you can generate from the admin menu.  So in order to run the tests,
 log in as admin, and select the option, "Generate test data."  The
-test data can co-exist with actual data, you can select this option at
-any time.
+test data can co-exist with actual data, so you can select this option
+at any time.
 
