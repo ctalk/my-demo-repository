@@ -44,7 +44,8 @@ public class Employee implements AuthLevel, BalanceTable, Postable {
                             if (ans.equals("a") || ans.equals("A")) {
                                 dao.update (u, AuthLevel.AUTH_CUSTOMER);
                                 pdao.updateBalance (u, BalanceTable.BAL_AUTH);
-				// Set the application in the transaction tale to 'COMPLETE'.
+				pdao.postApprovedAppl (u);
+				// Set the application's posting in the transaction tale to 'COMPLETE'.
                                 String sql = "update " + TransactionTable.transactionTableName +
                                     " set completed = " + Postable.COMPLETE +
                                     " where username = '" + u.userName + "' and ttype = " +
