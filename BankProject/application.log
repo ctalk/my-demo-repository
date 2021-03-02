@@ -546,3 +546,141 @@
 03-01-2021 19:27:33 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.0
 03-01-2021 19:27:34 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - update bank_app.users set authlevel = 2 where username = 'amy'
 03-01-2021 19:27:34 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - update bank_app.balances set auth = 1 where username = 'amy'
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Schema, "bank_app," not found - creating...
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.users.
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.user table.
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.transactions.
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.transactions table.
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.balances.
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.balances table.
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Admin user created.
+03-01-2021 20:44:30 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Create admin user.
+03-01-2021 20:44:37 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User admin: Login successful.
+03-01-2021 20:44:39 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Creating test user data...
+03-01-2021 20:44:39 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user marion.
+03-01-2021 20:44:39 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user declan.
+03-01-2021 20:44:39 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user amy.
+03-01-2021 20:44:39 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user anne.
+03-01-2021 20:44:39 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:46:28 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:46:36 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User admin: Login successful.
+03-01-2021 20:46:41 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Creating test user data...
+03-01-2021 20:46:41 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user marion.
+03-01-2021 20:46:41 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user declan.
+03-01-2021 20:46:41 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user amy.
+03-01-2021 20:46:41 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user anne.
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Schema, "bank_app," not found - creating...
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.users.
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.user table.
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.transactions.
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.transactions table.
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.balances.
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.balances table.
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Admin user created.
+03-01-2021 20:46:58 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Create admin user.
+03-01-2021 20:47:06 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User admin: Login successful.
+03-01-2021 20:47:11 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Creating test user data...
+03-01-2021 20:47:11 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user marion.
+03-01-2021 20:47:11 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user declan.
+03-01-2021 20:47:11 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user amy.
+03-01-2021 20:47:11 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user anne.
+03-01-2021 20:47:11 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:47:47 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:48:13 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "declan," not found.
+03-01-2021 20:48:28 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User declan: Login successful.
+03-01-2021 20:54:23 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:54:33 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "declan," not found.
+03-01-2021 20:54:40 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "declan," not found.
+03-01-2021 20:54:54 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:55:01 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "declan," not found.
+03-01-2021 20:55:23 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User declan: Login successful.
+03-01-2021 20:55:29 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 2200.0
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Schema, "bank_app," not found - creating...
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.users.
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.user table.
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.transactions.
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.transactions table.
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.balances.
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.balances table.
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Admin user created.
+03-01-2021 20:56:05 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Create admin user.
+03-01-2021 20:56:10 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User admin: Login successful.
+03-01-2021 20:56:13 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Creating test user data...
+03-01-2021 20:56:13 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user marion.
+03-01-2021 20:56:13 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user declan.
+03-01-2021 20:56:13 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user amy.
+03-01-2021 20:56:13 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user anne.
+03-01-2021 20:56:13 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:56:26 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:56:33 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User declan: Login successful.
+03-01-2021 20:56:34 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 2200.0
+03-01-2021 20:58:21 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:58:21 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Schema, "bank_app," not found - creating...
+03-01-2021 20:58:21 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:58:21 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.users.
+03-01-2021 20:58:21 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.user table.
+03-01-2021 20:58:21 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.transactions.
+03-01-2021 20:58:22 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.transactions table.
+03-01-2021 20:58:22 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.balances.
+03-01-2021 20:58:22 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.balances table.
+03-01-2021 20:58:23 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Admin user created.
+03-01-2021 20:58:23 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Create admin user.
+03-01-2021 20:58:30 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "declan," not found.
+03-01-2021 20:58:37 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "declan," not found.
+03-01-2021 20:58:44 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "declan," not found.
+03-01-2021 20:58:44 {INFO} [com.revature.rkiesling.main.BankApp] - User login unsuccessful - exiting.
+03-01-2021 20:59:13 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:59:13 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Schema, "bank_app," not found - creating...
+03-01-2021 20:59:13 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:59:13 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.users.
+03-01-2021 20:59:14 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.user table.
+03-01-2021 20:59:14 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.transactions.
+03-01-2021 20:59:14 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.transactions table.
+03-01-2021 20:59:14 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.balances.
+03-01-2021 20:59:14 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.balances table.
+03-01-2021 20:59:14 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Admin user created.
+03-01-2021 20:59:14 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Create admin user.
+03-01-2021 20:59:20 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "declan," not found.
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Schema, "bank_app," not found - creating...
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.users.
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.user table.
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.transactions.
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.transactions table.
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: removed old bank_app.balances.
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - makeBankTables: created bank_app.balances table.
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Admin user created.
+03-01-2021 20:59:42 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Create admin user.
+03-01-2021 20:59:47 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User admin: Login successful.
+03-01-2021 20:59:49 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Creating test user data...
+03-01-2021 20:59:49 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user marion.
+03-01-2021 20:59:49 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user declan.
+03-01-2021 20:59:49 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user amy.
+03-01-2021 20:59:49 {INFO} [com.revature.rkiesling.util.BankDBUtil] -  - Adding test user anne.
+03-01-2021 20:59:49 {INFO} [com.revature.rkiesling.util.BankDBUtil] - Success.
+03-01-2021 20:59:56 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 21:00:02 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User declan: Login successful.
+03-01-2021 21:00:03 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 2200.10009765625
+03-01-2021 21:06:09 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 21:06:18 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User declan: Login successful.
+03-01-2021 21:06:20 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 2200.10009765625
+03-01-2021 21:06:50 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 21:06:55 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User declan: Login successful.
+03-01-2021 21:06:56 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 2200.10009765625
+03-01-2021 21:07:05 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 21:07:17 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 21:07:23 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User declan: Login successful.
+03-01-2021 21:07:24 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 2200.10009765625
+03-01-2021 21:08:57 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 21:09:04 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User declan: Login successful.
+03-01-2021 21:09:05 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 2200.10009765625
+03-01-2021 21:09:40 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-01-2021 21:09:46 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User declan: Login successful.
+03-01-2021 21:09:47 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 2200.10009765625

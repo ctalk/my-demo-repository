@@ -30,6 +30,6 @@ public class DisplayUserRecord {
         System.out.println ("Auth:\t\t" + authString);
         System.out.println ("Address:\t" + rec.address ());
         System.out.println ("Zip code:\t" + rec.zipCode().toString ());
-        System.out.println ("Balance:\t" + rec.balance ().toString ());
+        System.out.format ("Balance:\t%.2f\n", rec.balance ());
         }
 }

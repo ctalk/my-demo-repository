@@ -84,7 +84,7 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         
                         
                     ArrayList<String> testUserNames = new ArrayList <String>(Arrays.asList("marion", "declan", "amy", "anne"));
-                    ArrayList<String> testPasswords = new ArrayList<String>(Arrays.asList("musicman", "bigCommittment", "amyw", "cleeves"));
+                    ArrayList<String> testPasswords = new ArrayList<String>(Arrays.asList("musicman", "bigCommitment", "amyw", "cleeves"));
                     int testAuths[] = {AuthLevel.AUTH_CUSTOMER, AuthLevel.AUTH_CUSTOMER, AuthLevel.AUTH_GUEST, AuthLevel.AUTH_EMPLOYEE};
 
                         // Create test user
@@ -132,9 +132,23 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
 			try (Connection conTestUser2 = JDBCConnection.getConnection ()) {
 			    String createBalanceSQL = 
 				"insert into " + BalanceTable.balanceTableName + " (username, balance, auth) " + 
-				" values ('amy', 3000, 0)";
+				" values ('amy', 3000.80, 0)";
 			    PreparedStatement pbal = conTestUser2.prepareStatement(createBalanceSQL);
 			    pbal.executeUpdate ();
+
+			    createBalanceSQL = 
+				"insert into " + BalanceTable.balanceTableName + " (username, balance, auth) " + 
+				" values ('marion', 4000.25, 1)";
+			    pbal = conTestUser2.prepareStatement(createBalanceSQL);
+			    pbal.executeUpdate ();
+			    
+			    createBalanceSQL = 
+				"insert into " + BalanceTable.balanceTableName + " (username, balance, auth) " + 
+				" values ('declan', 2200.10, 1)";
+			    pbal = conTestUser2.prepareStatement(createBalanceSQL);
+			    pbal.executeUpdate ();
+
+			    
 			    try {
 				conTestUser2.close ();
 			    } catch (SQLException e) {

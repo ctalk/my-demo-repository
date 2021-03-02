@@ -53,6 +53,9 @@ public class BankTasks implements Postable, AuthLevel {
 		case AuthLevel.AUTH_EMPLOYEE:
 		    Employee.employeeMenu (user);
 		break;
+		case AuthLevel.AUTH_CUSTOMER:
+		    Customer.customerMenu (user);
+		    break;
 		case AuthLevel.AUTH_GUEST:
 		    NewUser newUser = new NewUser (user.userName (), user.firstName (), user.lastName (), 
 						   user.auth (), user.zipCode ().toString (), user.address (), user.comment ());
