@@ -23,3 +23,41 @@
 03-02-2021 11:46:00 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "ggg," not found.
 03-02-2021 11:46:13 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - PostDAO : postPendingAppl : gggg gggg (username ggg) applied for an account.
 03-02-2021 11:46:13 {INFO} [com.revature.rkiesling.ui.LoginService] - New user: ggg
+03-02-2021 12:26:22 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 12:26:30 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 12:26:32 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:27:54 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 12:27:59 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 12:28:01 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:28:17 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 12:28:21 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 12:42:25 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 12:42:32 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 12:42:34 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:42:36 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:51:50 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 12:51:55 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - getLoginInfo: Login info for, "amy," not found.
+03-02-2021 12:51:59 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 12:52:01 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:52:07 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:55:13 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 12:55:21 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 12:55:22 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:56:20 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 12:56:24 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 12:56:26 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:56:52 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 12:56:56 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 12:56:57 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:58:14 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 12:58:17 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 12:58:19 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - d = 3000.800048828125
+03-02-2021 12:59:55 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 13:00:00 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 13:00:03 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - new balance = 2700.800048828125
+03-02-2021 13:01:28 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 13:01:31 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 13:01:34 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - new balance = 2700.800048828125
+03-02-2021 13:06:07 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-02-2021 13:06:12 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-02-2021 13:06:14 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - new balance = 2700.800048828125

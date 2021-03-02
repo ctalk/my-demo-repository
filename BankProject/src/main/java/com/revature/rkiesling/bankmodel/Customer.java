@@ -1,7 +1,11 @@
 package com.revature.rkiesling.bankmodel;
 
 import com.revature.rkiesling.ui.Menu;
+import com.revature.rkiesling.ui.NumericInput;
 import com.revature.rkiesling.ui.DisplayUserRecord;
+import com.revature.rkiesling.ui.ScreenUtil;
+import com.revature.rkiesling.bankmodel.User;
+import com.revature.rkiesling.bankmodel.Postable;
 import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.dao.PostDAO;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
@@ -9,19 +13,38 @@ import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import java.util.Scanner;
 import org.apache.log4j.Logger;
 
-public class Customer {
+public class Customer implements Postable {
 
     private static Logger log = Logger.getLogger(UserDAO.class);
+
+    public static void customerWithdraw (User u) {
+        PostDAO pdao = new PostDAO ();
+        pdao.getBalanceForUser (u);
+        double d = NumericInput.getDouble ("Enter the withdrawal amount: ");
+        if (d > u.balance ()) {
+            System.out.println ("There are not funds in this account.");
+            ScreenUtil.pause ();
+        } else if (d < 0.0) {
+            System.out.println ("You can't withdraw a negative amount.");
+            ScreenUtil.pause ();
+        } else {
+            double d1 = u.balance () - d;
+            u.balance (d1);
+            pdao.updateBalance (u, Postable.COMPLETE);
+        }
+    }
+
 
     public static void customerMenu (User user) {
         Menu m = new Menu ();
         UserDAO dao = new UserDAO ();
         PostDAO pdao = new PostDAO ();
-	//        @SuppressWarnings("resource")
-	    // Scanner s = new Scanner (System.in);
-	//        String ans = "";
+        //        @SuppressWarnings("resource")
+            // Scanner s = new Scanner (System.in);
+        //        String ans = "";
 
         m.add("View your account");
+        m.add("Withdraw money");
         m.add("Exit");
 
         while (true) {
@@ -40,6 +63,9 @@ public class Customer {
                     }
                     break;
                 case 2:
+                    customerWithdraw (user);
+                    break;
+                case 3:
                     System.out.println ("\nExiting - goodbye.");
                     System.exit(AuthLevel.SUCCESS);
                     break;

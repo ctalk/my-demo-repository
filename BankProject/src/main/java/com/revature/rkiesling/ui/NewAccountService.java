@@ -46,8 +46,6 @@ public class NewAccountService implements AuthLevel, BalanceTable {
                 user.lastName(sc.nextLine ());
                 System.out.print("Address: ");
                 user.address(sc.nextLine ());
-                // System.out.print("Zip code: ");
-                // user.zipCode(sc.nextLine ());
                 Integer zip = NumericInput.getInt ("Zip code: ");
                 user.zipCode (zip.toString ());
                 System.out.print("Comment (optional): ");

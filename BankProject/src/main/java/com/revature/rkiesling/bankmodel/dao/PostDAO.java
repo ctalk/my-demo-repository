@@ -139,7 +139,6 @@ public class PostDAO implements BalanceTable, AuthLevel,
                 ResultSet rs = stmt.executeQuery (sql.toString ());
                 if (rs.next ()) {
                     double d = (double)rs.getFloat ("balance");
-                    log.info ("d = " + d);
                     user.balance(d);
                 }
             } catch (SQLException e) {
@@ -164,11 +163,52 @@ public class PostDAO implements BalanceTable, AuthLevel,
             @SuppressWarnings("unused")
             Integer nUpdates = stmt.executeUpdate(sql.toString ());
 
+            sql = new StringBuffer ("update " + BalanceTable.balanceTableName + " set balance = " + u.balance () +
+                                    " where username = '" + u.userName () + "'");
+            stmt = c.createStatement ();
+            @SuppressWarnings("unused")
+            Integer nUpdates2 = stmt.executeUpdate(sql.toString ());
+
         JDBCConnection.close (c);
 
         } catch (SQLException e) {
             log.error ("PostDAO : updateBalance (User, int): " + e.getMessage ());
         }
+    }
+
+    public void postWithdrawal (User user) {
+        Connection c = null;
+        try  {
+            c = JDBCConnection.getConnection ();
+        } catch (SQLException e) {
+            System.out.println ("Connection error: " + e.getMessage ());
+            log.error ("JDBCConnection error: " + e.getMessage ());
+            System.exit(AuthLevel.FAIL);
+        }
+
+        StringBuffer sql = new StringBuffer ("insert into " +
+                                         TransactionTable.transactionTableName +
+                                             "(username, " +
+                                             "ttype, " +
+                                             "amount, " +
+                                             "completed)");
+        sql.append(" values (");
+        sql.append("'" + user.userName () + "', ");
+        sql.append (Postable.POST_WITHDRAWAL + ", ");
+        sql.append(user.balance() + ", ");
+        sql.append(Postable.COMPLETE + ")");
+
+        log.info ("PostDAO : postPendingAppl : " + user.firstName () + " " + user.lastName () + " (username " +
+                  user.userName () + ") applied for an account.");
+        try {
+            Statement stmt = c.createStatement ();
+            @SuppressWarnings("unused")
+                Integer nUpdates = stmt.executeUpdate(sql.toString ());
+        } catch (SQLException e) {
+            log.error("Bad SQL query: " + sql);
+            // throw e;  // needed? 
+        }
+        JDBCConnection.close (c);
     }
 
     public void postSQLUpdate (String sql) {
