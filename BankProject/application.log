@@ -912,3 +912,4 @@
 03-02-2021 03:43:22 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - d = 3000.800048828125
 03-02-2021 03:43:24 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - update bank_app.users set authlevel = 2 where username = 'amy'
 03-02-2021 03:43:24 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - update bank_app.transactions set completed = 1 where username = 'amy' and ttype = 1
+03-02-2021 03:52:54 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
