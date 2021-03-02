@@ -25,4 +25,10 @@ use to start creating users and accounts.
 - The menu options allow you to create employee accounts, clear the
   data from the DBMS, and generate test data.
 
+### Tests
+Some of the app's tests for successful operations use DBMS data that
+you can generate from the admin menu.  So in order to run the tests,
+log in as admin, and select the option, "Generate test data."  The
+test data can co-exist with actual data, you can select this option at
+any time.
 
