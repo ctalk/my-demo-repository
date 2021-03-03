@@ -259,7 +259,6 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         pUser = conTable.prepareStatement(queryUser.toString());
                         try {
                                 pUser.executeUpdate ();
-                                JDBCConnection.close (conTable);
                                 log.info("makeBankTables: created bank_app.user table.");
                         } catch (SQLException e) {
                                 reportSQLException ("makeBankTables: " + queryUser.toString () + " : ", e);
@@ -283,7 +282,6 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         pTrans = conTable.prepareStatement(queryTrans.toString());
                         try {
                                 pTrans.executeUpdate ();
-                                JDBCConnection.close (conTable);
                                 log.info("makeBankTables: created " + TransactionTable.transactionTableName + " table.");
                         } catch (SQLException e) {
                                 reportSQLException ("makeBankTables: " + queryTrans.toString () + " : ", e);
