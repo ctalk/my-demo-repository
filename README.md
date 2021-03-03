@@ -32,3 +32,24 @@ log in as admin, and select the option, "Generate test data."  The
 test data can co-exist with actual data, so you can select this option
 at any time.
 
+#### DBMS Initialization
+When the bank app starts for the first time, it checks for the
+presence of a schema which is known, simply, as, "bank_app."
+
+If for some reason the DBMS has left one of the tables in an unstable
+state, or you've accidentally deleted one of the tables, you can clear
+them from the DBMS by entering the following SQL queries from your
+favorite SQL front end.
+
+drop table bank_app.users;
+drop table bank_app.balances;
+drop table bank_app.transactions;
+drop schema bank_app;
+
+This will cause the Bank App to re-create is schema and tables
+the next time it is run.
+
+Please remember to back up any existing data before re-creating the
+tables, if they contain actual bank records.
+
+
