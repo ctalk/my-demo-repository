@@ -32,7 +32,7 @@ import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 //import static org.mockito.Mockito.*;
 
 //
-//   TODO - Because we've subclassed User 
+//   TODO - Because we've separ
 //   roles, we have to figure out how to modify this to each
 //   
 //
