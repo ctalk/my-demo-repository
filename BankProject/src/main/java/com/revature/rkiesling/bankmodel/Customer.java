@@ -3,19 +3,24 @@ package com.revature.rkiesling.bankmodel;
 import com.revature.rkiesling.ui.Menu;
 import com.revature.rkiesling.ui.NumericInput;
 import com.revature.rkiesling.ui.DisplayUserRecord;
+import com.revature.rkiesling.ui.DisplayPostRecord;
 import com.revature.rkiesling.ui.ScreenUtil;
 import com.revature.rkiesling.ui.NewAccountService;
+import com.revature.rkiesling.bankmodel.TransactionTable;
 import com.revature.rkiesling.bankmodel.dao.UserDAO;
 import com.revature.rkiesling.bankmodel.dao.PostDAO;
 import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 import com.revature.rkiesling.bankmodel.exception.UserAlreadyExistsException;
 
+import java.util.Scanner;
 import org.apache.log4j.Logger;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class Customer implements Postable {
+public class Customer implements Postable, TransactionTable {
 
-    private static Logger log = Logger.getLogger(UserDAO.class);
+    private static Logger log = Logger.getLogger(Customer.class);
+    private static Scanner sc = new Scanner (System.in);
 
     private static void daoBalance (User u, Integer ttype) {
         PostDAO pdao = new PostDAO ();
@@ -54,6 +59,52 @@ public class Customer implements Postable {
         }
     }
 
+    public static void acceptMoneyTransfer (User user, Post post) {
+	PostDAO dao = new PostDAO ();
+	double newBalance;
+
+	dao.getBalanceForUser (user);
+	
+	newBalance = post.amount ();
+	newBalance += user.balance ();
+	user.balance (newBalance);
+	daoBalance (user, Postable.POST_DEPOSIT);
+
+	// First set the sender's transaction to completed.
+	String sql = "update " + TransactionTable.transactionTableName +
+	    " set completed = " + Postable.COMPLETE + " where rcvr = '" + user.userName () +
+	    "'";
+	dao.postSQLUpdate (sql);
+	// Then add the posting that we've received the money.
+	sql = "insert into " + TransactionTable.transactionTableName +
+	    "(username, ttype, amount, completed) values ('" + user.userName () + "', " + 
+	    Postable.POST_RECEIVE_XFER + ", " + user.balance () + ", " + Postable.COMPLETE + ")";
+	log.info (sql);
+	dao.postSQLUpdate (sql);
+    }
+
+    public static Boolean haveMoneyTransfers (User user) {
+	String sql = "Select * from " + TransactionTable.transactionTableName +
+	    " where rcvr = '" + user.userName () + "' and ttype = " + Postable.POST_SEND_XFER +
+            " and completed != " + Postable.COMPLETE;
+	PostDAO pdao = new PostDAO ();
+	ArrayList<Post> records = pdao.queryTransactions (sql);
+	if (records.size () > 0) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+
+    public static ArrayList<Post> getMoneyTransfers (User user) {
+	String sql = "Select * from " + TransactionTable.transactionTableName +
+	    " where rcvr = '" + user.userName () + "' and ttype = " + Postable.POST_SEND_XFER +
+            " and completed != " + Postable.COMPLETE;
+	PostDAO pdao = new PostDAO ();
+	ArrayList<Post> records = pdao.queryTransactions (sql);
+	return records;
+    }
+
     public static void customerMenu (User user) {
         Menu m = new Menu ();
         UserDAO dao = new UserDAO ();
@@ -63,6 +114,7 @@ public class Customer implements Postable {
         m.add("Withdraw money");
         m.add("Deposit money");
         m.add("Add another account");
+	m.add("Receive money");
         m.add("Exit");
 
         while (true) {
@@ -119,7 +171,30 @@ public class Customer implements Postable {
 		    }
 		    
                     break;
-                case 5:
+		case 5:
+		    if (haveMoneyTransfers (user)) {
+		    	ArrayList<Post> transfers = getMoneyTransfers (user);
+			if (transfers.size () == 1) {
+			    System.out.println ("There is 1 transfer for you.");
+			} else {
+			    System.out.println ("There are " + transfers.size () + " transfers for you.");
+			}
+			System.out.println ("");
+			for (Post t: transfers) {
+			    DisplayPostRecord.printRec (t);
+			    System.out.println ("(A) Accept or (D) Decline?");
+			    String ans = sc.nextLine ();
+			    if (ans.equals ("a") || ans.equals ("A")) {
+				acceptMoneyTransfer (user, t);
+			    }
+			}
+			ScreenUtil.pause ();
+		    } else {
+			System.out.println ("There are no money transfers for you.");
+			ScreenUtil.pause ();
+		    }
+		    break;
+                case 6:
                     System.out.println ("\nExiting - goodbye.");
                     System.exit(AuthLevel.SUCCESS);
                     break;

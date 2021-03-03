@@ -45,9 +45,9 @@ public class DisplayPostRecord implements Postable {
             }
 
         
-        System.out.println ("Type:\t(" + rec.postType () + ") " + postTypeStr);
+        System.out.println ("Type:\t\t(" + rec.postType () + ") " + postTypeStr);
         System.out.println ("Date and time:\t" + rec.timestamp ());
-        System.out.println ("User:\t" + rec.userName ());
+        System.out.println ("User:\t\t" + rec.userName ());
         System.out.println ("Amount:\t\t" + rec.amount ());
         System.out.println ("Dest. User:\t" + rec.destUser ());
         System.out.println ("Completed:\t" + completeStr);

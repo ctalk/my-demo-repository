@@ -129,7 +129,7 @@ public class PostDAO implements BalanceTable, AuthLevel,
 
         log.info ("PostDAO : postBalance : " + user.firstName () + " " + user.lastName () + " (username " +
                   user.userName () + ") " +
-		  ((ttype == Postable.POST_WITHDRAWAL) ? "withdrew" : "deposited") +
+		  ((ttype == Postable.POST_WITHDRAWAL) ? "withdrew " : "deposited") +
 		  "money.");
 
         JDBCConnection.close (c);
@@ -261,6 +261,33 @@ public class PostDAO implements BalanceTable, AuthLevel,
         } catch (SQLException e) {
             log.error ("PostDAO: postsqlUpdate: " + e.getMessage ());
         }
+    }
+
+    public ArrayList<Post> queryTransactions (String sql) {
+        ArrayList<Post> postSet = new ArrayList<Post>();
+        try (Connection c = JDBCConnection.getConnection ()) {
+            // StringBuffer sql = new StringBuffer ("select * from " + TransactionTable.transactionTableName);
+            Statement stmt = c.createStatement ();
+            // ResultSet rs = stmt.executeQuery(sql.toString ());
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next ()) {
+                Timestamp ts = rs.getTimestamp ("datetime");
+                LocalDateTime ldt = ts.toLocalDateTime ();
+                DateTimeFormatter df = DateTimeFormatter.ofPattern ("yyyy-MM-dd HH:mm:ss");
+                Post p = new Post (rs.getInt ("ttype"),
+                                   ldt.format (df),
+                                   rs.getString ("username"),
+                                   rs.getInt ("ttype"),
+                                   rs.getDouble ("amount"),
+                                   rs.getString ("rcvr"),
+                                   rs.getInt ("completed"));
+                postSet.add(p);
+            }
+            JDBCConnection.close (c);
+        } catch (SQLException e) {
+            log.error ("PostDAO.getTransactions (): " + e.getMessage ());
+        }
+        return postSet;
     }
 
     public ArrayList<Post> getTransactions () {
