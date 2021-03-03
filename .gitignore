@@ -1,4 +1,7 @@
 # Emacs backup files
 *~
+\.\#*
+\#*
+
 # Compiled classes
 *.class
