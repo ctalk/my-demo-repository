@@ -53,4 +53,9 @@ the next time it is run.
 Please remember to back up any existing data before re-creating the
 tables, if they contain actual bank records.
 
+#### Event Logging
+As describeded, the Bank App uses Log4j to log its operation to a file.
+The file is located in the project root folder, and is named
+application.log.
+
 

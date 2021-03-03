@@ -20,29 +20,29 @@ public class TestGetUserLogin {
     @Test(expected=UserNotFoundException.class)
     public void testBadUserName () throws UserNotFoundException {
                 
-        UserDAO dao = new UserDAO ();
-        dao.getLoginInfo("marion3");
+	UserDAO dao = new UserDAO ();
+	dao.getLoginInfo("marion3");
     }
 
     @Test(expected=UserNotFoundException.class)
     public void testBadPassword () throws UserNotFoundException {
                 
-        UserDAO dao = new UserDAO ();
-        dao.getLoginInfo("marion3", "marion3");
+	UserDAO dao = new UserDAO ();
+	dao.getLoginInfo("marion3", "marion3");
     }
 
     @Test
     public void testUserName () throws UserNotFoundException {
                 
-        UserDAO dao = new UserDAO ();
-        dao.getLoginInfo("marion");
+	UserDAO dao = new UserDAO ();
+	dao.getLoginInfo("marion");
     }
 
     @Test
     public void testUserNameAndPassword () throws UserNotFoundException {
                 
-        UserDAO dao = new UserDAO ();
-        dao.getLoginInfo("marion", "musicman");
+	UserDAO dao = new UserDAO ();
+	dao.getLoginInfo("marion", "musicman");
     }
 
 }

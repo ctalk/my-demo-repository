@@ -31,12 +31,6 @@ import com.revature.rkiesling.bankmodel.exception.UserNotFoundException;
 
 //import static org.mockito.Mockito.*;
 
-//
-//   TODO - Because we've subclassed User 
-//   roles, we have to figure out how to modify this to each
-//   
-//
-
 public class TestAddUserDAOMocked implements AuthLevel {
         
     public static UserDAO userDAO;

@@ -104,8 +104,8 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         String createTestSQL = 
                                         "insert into " + UserTable.userTableName + " (" +
                                                         "username, firstName, lastName, password, authLevel, address, zipcode, comment)" +
-                                                        " values (?, ?, 'J. Newuser', ?, ?, '123 Abc St., Ourtown, PA', " + 
-                                              12000 + ", 'Machine generated test data.')";
+                                                        " values (?, 'testFirstName', 'testLastName', ?, ?, 'testAddress', " + 
+                                              10000 + ", 'Machine generated test data.')";
                         
                         PreparedStatement p = conTestUser.prepareStatement(createTestSQL);
                         
@@ -114,9 +114,8 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                         for (int i = 0; i < testUserNames.size (); ++i) {
                                 
                                 p.setString(1, testUserNames.get(i));
-                                p.setString(2, testUserNames.get(i));
-                                p.setString(3, testPasswords.get(i));
-                                p.setInt(4, testAuths[i]);
+                                p.setString(2, testPasswords.get(i));
+                                p.setInt(3, testAuths[i]);
                                 p.addBatch ();
                                 log.info(" - Adding test user " + testUserNames.get(i) + ".");
                                         
@@ -162,14 +161,14 @@ public class BankDBUtil implements AuthLevel, UserTable, TransactionTable, Balan
                             PreparedStatement pApp = conTestUser3.prepareStatement(createApplicationTransSQL);
                             pApp.executeUpdate ();
 
-                            String createReceiveMoneyTransferSQL =
+			    String createReceiveMoneyTransferSQL =
                                 "insert into " + TransactionTable.transactionTableName + " (username, ttype, amount, rcvr, completed) " + 
-                                // Postable.POST_SEND_XFER, and Postable.INCOMPLETE
+				// Postable.POST_SEND_XFER, and Postable.INCOMPLETE
                                 " values ('declan', 6, 500.00, 'amy', 0)";
                             pApp = conTestUser3.prepareStatement(createReceiveMoneyTransferSQL);
                             pApp.executeUpdate ();
 
-                            JDBCConnection.close (conTestUser3);
+			    JDBCConnection.close (conTestUser3);
                         } catch (SQLException e) {
                             log.error ("makeTestUserData (balance): " + e.getMessage ());
                         }
