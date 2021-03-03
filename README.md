@@ -8,12 +8,13 @@ For further information, contact:  rkies@cpan.org
 
 ### Setup
 The Bank Projects is designed to be used with a JDBC connection to PostgreSQL.  It
-is typically run with the following authentication information:
+is typically run with the following authentication information defined in environment
+variables:
 
 - Java Environment
-  - DB_USER should be your database login.
+  - DB_USER - the database login.
   - DB_PASSWORD - the database password.
-  - DB_URL - The JDBC URL of the database.  jdbc:postgresql://localhost:5432/
+  - DB_URL - The JDBC URL of the database.  (Ex: jdbc:postgresql://localhost:5432/)
 
 ### Initialization
 The program initializes the bank_app schema (basically, everything in
