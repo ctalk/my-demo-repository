@@ -16,57 +16,57 @@ import org.apache.log4j.Logger;
 
 
 public class BankApp implements AuthLevel {
-	
-	private static Logger log = Logger.getLogger(BankApp.class);
-	
-	public static void main (String[] args) {
-		
-		
-		// Get the admin's credentials from the system
-		// before we check for the DBMS.
-		LoginService.getAdminCreds ();
-		int retries = 0;
+        
+        private static Logger log = Logger.getLogger(BankApp.class);
+        
+        public static void main (String[] args) {
+                
+                
+                // Get the admin's credentials from the system
+                // before we check for the DBMS.
+                LoginService.getAdminCreds ();
+                int retries = 0;
 
-		// ScreenUtil.pause ();  // This is needed to unstick console sometimes - weird.
-		try {
-			// Make sure we have a connection.  getConnection prints the "Connected" message
-			Connection c = JDBCConnection.getConnection ();
-			System.out.println ("Connected.");
-			log.info ("Connected to bank RDBMS");
-			c.close ();
-		} catch (SQLException e) {
-			System.out.println ("Bank data connection failed: " + e.getMessage () + ".");
-			log.error ("Bank data connection failed: " + e.getMessage () + ".");
-			System.exit (AuthLevel.FAIL);
-		}
-		if (!BankDBUtil.haveBankSchema ()) {
-			System.out.println ();
-			System.out.println ("Creating new DB.");
-			BankDBUtil.makeBankSchema ();
-			BankDBUtil.makeBankTables ();
-			BankDBUtil.createAdminUser ();
-		}
-		
-		LoginService l = new LoginService ();
-		User user = null;
-		System.out.println ("\nPlease log in, or enter \"new\" to create an account:");
-		do {
-		    try {
-			user = l.getUserLogin ();
-		    } catch (UserNotFoundException e) {
-			if (retries == AuthLevel.maxRetries) {
-			    System.out.println ("Login failed - too many retries.  Goodbye.");
-			    log.info("User login unsuccessful - exiting.");
-			    System.exit(AuthLevel.SUCCESS);					
-			} else {
-			    System.out.println ("User not found. Please re-enter.");
-			}
-		    }
-		} while ((user == null) && (++retries <= AuthLevel.maxRetries));
+                // ScreenUtil.pause ();  // This is needed to unstick console sometimes - weird.
+                try {
+                        // Make sure we have a connection.  getConnection prints the "Connected" message
+                        Connection c = JDBCConnection.getConnection ();
+                        System.out.println ("Connected.");
+                        log.info ("Connected to bank RDBMS");
+                        c.close ();
+                } catch (SQLException e) {
+                        System.out.println ("Bank data connection failed: " + e.getMessage () + ".");
+                        log.error ("Bank data connection failed: " + e.getMessage () + ".");
+                        System.exit (AuthLevel.FAIL);
+                }
+                if (!BankDBUtil.haveBankSchema ()) {
+                        System.out.println ();
+                        System.out.println ("Creating new DB.");
+                        BankDBUtil.makeBankSchema ();
+                        BankDBUtil.makeBankTables ();
+                        BankDBUtil.createAdminUser ();
+                }
+                
+                LoginService l = new LoginService ();
+                User user = null;
+                System.out.println ("\nPlease log in, or enter \"new\" to create an account:");
+                do {
+                    try {
+                        user = l.getUserLogin ();
+                    } catch (UserNotFoundException e) {
+                        if (retries == AuthLevel.maxRetries) {
+                            System.out.println ("Login failed - too many retries.  Goodbye.");
+                            log.info("User login unsuccessful - exiting.");
+                            System.exit(AuthLevel.SUCCESS);                                     
+                        } else {
+                            System.out.println ("User not found. Please re-enter.");
+                        }
+                    }
+                } while ((user == null) && (++retries <= AuthLevel.maxRetries));
 
-		if (user != null) {
-		    System.out.println ("\nWelcome, " + user.firstName () + " " + user.lastName () + ".\n");
-		    BankTasks.performTasks(user); 
-		}	
-	}
+                if (user != null) {
+                    System.out.println ("\nWelcome, " + user.firstName () + " " + user.lastName () + ".\n");
+                    BankTasks.performTasks(user); 
+                }       
+        }
 }
