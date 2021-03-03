@@ -381,3 +381,23 @@
 03-03-2021 06:04:07 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
 03-03-2021 06:04:13 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - PostDAO : postBalance : testFirstName testLastName (username amy) depositedmoney.
 03-03-2021 06:04:13 {INFO} [com.revature.rkiesling.bankmodel.Customer] - insert into bank_app.transactions(username, ttype, amount, completed) values ('amy', 7, 3500.800048828125, 1)
+03-03-2021 08:15:57 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-03-2021 08:16:08 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-03-2021 08:16:28 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-03-2021 08:16:37 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-03-2021 08:33:09 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-03-2021 08:33:17 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-03-2021 09:02:35 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-03-2021 09:03:02 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-03-2021 09:03:07 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-03-2021 09:03:15 {ERROR} [com.revature.rkiesling.bankmodel.dao.PostDAO] - Bad SQL query: insert into bank_app.transactions(username, ttype, amount, rcvr, completed) values ('amy', 6, 200.0, declan, 0)
+03-03-2021 09:03:15 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - PostDAO.sendMoney (): amy sent 200.0 to declan
+03-03-2021 09:05:01 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-03-2021 09:05:05 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-03-2021 09:05:12 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - PostDAO.sendMoney (): amy sent 200.0 to declan
+03-03-2021 09:08:25 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-03-2021 09:08:31 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-03-2021 09:08:37 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - PostDAO.sendMoney (): amy sent 200.0 to declan
+03-03-2021 09:10:50 {INFO} [com.revature.rkiesling.main.BankApp] - Connected to bank RDBMS
+03-03-2021 09:10:55 {INFO} [com.revature.rkiesling.bankmodel.dao.UserDAO] - User amy: Login successful.
+03-03-2021 09:11:03 {INFO} [com.revature.rkiesling.bankmodel.dao.PostDAO] - PostDAO.sendMoney (): amy sent 200.0 to declan

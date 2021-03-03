@@ -59,6 +59,46 @@ public class PostDAO implements BalanceTable, AuthLevel,
         JDBCConnection.close (c);
     }
 
+    public void postSendMoney (User sendingUser, User destUser, Double amount) {
+
+        try (Connection c = JDBCConnection.getConnection ()) {
+	    StringBuffer sql = new StringBuffer ("insert into " +
+						 TransactionTable.transactionTableName +
+						 " (username, " +
+						 "ttype, " +
+						 "amount, " +
+						 "rcvr, " +
+						 "completed)");
+	    sql.append(" values (");
+	    sql.append("'" + sendingUser.userName () + "', ");
+	    sql.append (Postable.POST_SEND_XFER + ", ");
+	    sql.append(amount + ", '");
+	    sql.append(destUser.userName () + "', ");
+	    sql.append(Postable.INCOMPLETE + ")");
+
+	    try {
+		Statement stmt = c.createStatement ();
+		@SuppressWarnings("unused")
+		    Integer nUpdates = stmt.executeUpdate(sql.toString ());
+	    } catch (SQLException e) {
+		log.error("Bad SQL query: " + sql);
+		// throw e;  // needed? 
+	    }
+            sendingUser.balance (sendingUser.balance () - amount);
+            // Assume for now that destUser is going to accept the transfer.
+            updateBalance (sendingUser, Postable.COMPLETE);
+
+	    log.info ("PostDAO.sendMoney (): " + sendingUser.userName () + " sent " + amount +
+		      " to " + destUser.userName ());
+	    JDBCConnection.close (c);
+        } catch (SQLException e) {
+            System.out.println ("Connection error: " + e.getMessage ());
+            log.error ("JDBCConnection error: " + e.getMessage ());
+            System.exit(AuthLevel.FAIL);
+        }
+
+    }
+
     public void postApprovedAppl (User user) {
         Connection c = null;
         try  {

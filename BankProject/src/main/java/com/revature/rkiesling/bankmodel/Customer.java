@@ -22,6 +22,36 @@ public class Customer implements Postable, TransactionTable {
     private static Logger log = Logger.getLogger(Customer.class);
     private static Scanner sc = new Scanner (System.in);
 
+    public static void sendMoney (User user) {
+        PostDAO pdao = new PostDAO ();
+        UserDAO udao = new UserDAO ();
+
+	double amount = NumericInput.getDouble ("Enter the amount to transfer: ");
+        pdao.getBalanceForUser (user);
+
+	if (amount > user.balance ()) {
+	    System.out.println ("You don't have enough money in your account.");
+	    ScreenUtil.pause ();
+	    return;
+	} else if (amount <= 0) {
+	    System.out.println ("Please enter a positive number.");
+	    ScreenUtil.pause ();
+	    return;
+	}
+
+	System.out.print ("Enter the receiver's user name: ");
+	String destUserStr = sc.nextLine ();
+	try {
+	    User destUser = udao.getLoginInfo (destUserStr);
+	    pdao.postSendMoney (user, destUser, amount);
+	} catch (UserNotFoundException e) {
+	    System.out.println ("User " + destUserStr + " not found.");
+	    ScreenUtil.pause ();
+	    return;
+	}	
+	
+    }
+
     private static void daoBalance (User u, Integer ttype) {
         PostDAO pdao = new PostDAO ();
         pdao.updateBalance (u, Postable.COMPLETE);
@@ -115,6 +145,7 @@ public class Customer implements Postable, TransactionTable {
         m.add("Deposit money");
         m.add("Add another account");
 	m.add("Receive money");
+	m.add("Send money");
         m.add("Exit");
 
         while (true) {
@@ -194,7 +225,10 @@ public class Customer implements Postable, TransactionTable {
 			ScreenUtil.pause ();
 		    }
 		    break;
-                case 6:
+		case 6:
+		    sendMoney (user);
+		    break;
+                case 7:
                     System.out.println ("\nExiting - goodbye.");
                     System.exit(AuthLevel.SUCCESS);
                     break;
