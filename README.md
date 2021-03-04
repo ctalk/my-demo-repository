@@ -37,19 +37,19 @@ state, or you've accidentally deleted one of the tables, you can clear
 them from the DBMS by entering the following SQL queries from your
 favorite SQL front end.
 
-drop table bank_app.users;
-drop table bank_app.balances;
-drop table bank_app.transactions;
-drop schema bank_app;
+- drop table if exists bank_app.users;
+- drop table if exists bank_app.balances;
+- drop table if exists bank_app.transactions;
+- drop schema bank_app;
 
-This will cause the Bank App to re-create is schema and tables
+This will cause the Bank App to re-create its schema and tables
 the next time it is run.
 
 Please remember to back up any existing data before re-creating the
-tables, if they contain actual bank records.
+tables, if the tables contain actual bank records.
 
 #### Event Logging
-As describeded, the Bank App uses Log4j to log its operation to a file.
+As described, the Bank App uses Log4j to log its operations to a file.
 The file is located in the project root folder, and is named
 application.log.
 
