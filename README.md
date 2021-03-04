@@ -1,7 +1,5 @@
 ## Revature Coursework - Robert Kiesling
 
-For further information, contact:  rkies@cpan.org
-
 ## BankProject App Setup
 
 ### Setup
