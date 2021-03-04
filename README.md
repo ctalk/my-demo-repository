@@ -1,7 +1,5 @@
 ## Revature Coursework - Robert Kiesling
 
-This is my repository of coursework for Revature company.
-
 For further information, contact:  rkies@cpan.org
 
 ## BankProject App Setup
@@ -58,4 +56,6 @@ As describeded, the Bank App uses Log4j to log its operation to a file.
 The file is located in the project root folder, and is named
 application.log.
 
+
+For further information, contact:  rkies@cpan.org
 
