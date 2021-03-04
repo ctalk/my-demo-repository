@@ -2,7 +2,6 @@
 
 ## BankProject App Setup
 
-### Setup
 The Bank Projects is designed to be used with a JDBC connection to PostgreSQL.  It
 is typically run with the following authentication information defined in environment
 variables:
